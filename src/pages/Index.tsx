@@ -1,7 +1,7 @@
-import SpaceWeatherStory from '@/components/SpaceWeatherStory';
+import EnhancedSpaceWeatherStory from '@/components/EnhancedSpaceWeatherStory';
 
 const Index = () => {
-  return <SpaceWeatherStory />;
+  return <EnhancedSpaceWeatherStory />;
 };
 
 export default Index;
