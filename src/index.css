@@ -8,35 +8,51 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Space-themed design system */
+    --background: 223 47% 6%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 223 47% 8%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 223 47% 8%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 45 100% 65%;
+    --primary-foreground: 223 47% 6%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 264 83% 70%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 223 47% 12%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 340 82% 60%;
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 223 47% 15%;
+    --input: 223 47% 15%;
+    --ring: 45 100% 65%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Space weather gradients */
+    --gradient-solar: linear-gradient(135deg, hsl(45 100% 65%), hsl(25 100% 60%));
+    --gradient-aurora: linear-gradient(135deg, hsl(264 83% 70%), hsl(180 100% 50%), hsl(120 100% 50%));
+    --gradient-cosmic: linear-gradient(135deg, hsl(264 83% 70%), hsl(300 80% 50%), hsl(340 82% 60%));
+    --gradient-space: linear-gradient(180deg, hsl(223 47% 6%), hsl(223 47% 10%));
+
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Space-themed shadows */
+    --shadow-solar: 0 0 30px hsl(45 100% 65% / 0.3);
+    --shadow-aurora: 0 0 40px hsl(264 83% 70% / 0.4);
+    --shadow-cosmic: 0 10px 40px -10px hsl(340 82% 60% / 0.3);
 
     --sidebar-background: 0 0% 98%;
 

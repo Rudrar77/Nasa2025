@@ -13,6 +13,21 @@ export default {
       },
     },
     extend: {
+      backgroundImage: {
+        'gradient-solar': 'var(--gradient-solar)',
+        'gradient-aurora': 'var(--gradient-aurora)',
+        'gradient-cosmic': 'var(--gradient-cosmic)',
+        'gradient-space': 'var(--gradient-space)',
+      },
+      boxShadow: {
+        'solar': 'var(--shadow-solar)',
+        'aurora': 'var(--shadow-aurora)',
+        'cosmic': 'var(--shadow-cosmic)',
+      },
+      transitionTimingFunction: {
+        'smooth': 'var(--transition-smooth)',
+        'bounce': 'var(--transition-bounce)',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -80,10 +95,25 @@ export default {
             height: "0",
           },
         },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.5" },
+        },
+        "rotate-slow": {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "float": "float 3s ease-in-out infinite",
+        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "rotate-slow": "rotate-slow 20s linear infinite",
       },
     },
   },
