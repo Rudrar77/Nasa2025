@@ -13,6 +13,9 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "@public": path.resolve(__dirname, "./public"),
     },
   },
+  assetsInclude: ['**/*.jpg'],
+  publicDir: "public",
 }));

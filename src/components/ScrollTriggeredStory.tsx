@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
-import { useRef, ReactNode, useEffect } from 'react';
+import { useRef, ReactNode, useEffect, useState } from 'react';
 
 interface ScrollSectionProps {
   children: ReactNode;
@@ -99,6 +99,7 @@ const AnimatedCounter = ({ from, to, suffix = '', className = '' }: AnimatedCoun
     damping: 100,
     stiffness: 100,
   });
+  const [displayValue, setDisplayValue] = useState(from);
 
   useEffect(() => {
     if (isInView) {
@@ -108,9 +109,19 @@ const AnimatedCounter = ({ from, to, suffix = '', className = '' }: AnimatedCoun
     }
   }, [isInView, from, to, motionValue]);
 
+  useEffect(() => {
+    const unsubscribe = springValue.on("change", latest => {
+      setDisplayValue(Math.round(latest));
+    });
+    return () => unsubscribe();
+  }, [springValue]);
+
+  // Format number with commas for thousands
+  const formattedNumber = new Intl.NumberFormat('en-US').format(displayValue);
+
   return (
     <motion.span ref={ref} className={className}>
-      <motion.span>{Math.round(springValue.get())}</motion.span>
+      <motion.span>{formattedNumber}</motion.span>
       {suffix}
     </motion.span>
   );

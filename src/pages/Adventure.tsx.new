@@ -1,0 +1,841 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
+import { ChevronLeft, ChevronRight, Home, RotateCcw } from 'lucide-react';
+import TTSControls from '@/components/TTSControls';
+import SolarFormation3D from '@/components/animations3D/SolarFormation3D';
+import SolarFlareJourney3D from '@/components/animations3D/SolarFlareJourney3D';
+import Magnetosphere3D from '@/components/animations3D/Magnetosphere3D';
+import EarthImpact3D from '@/components/animations3D/EarthImpact3D';
+import ElementarySpaceAdventure3D from '@/components/animations3D/ElementarySpaceAdventure3D';
+import MiddleSchoolSpaceAdventure3D from '@/components/animations3D/MiddleSchoolSpaceAdventure3D';
+import HighSchoolSpaceAdventure3D from '@/components/animations3D/HighSchoolSpaceAdventure3D';
+import SpaceStormSimulation3D from '@/components/animations3D/SpaceStormSimulation3D';
+import useTTS from '@/hooks/useTTS';
+
+interface Slide {
+  id: number;
+  title: string;
+  content: string;
+  ttsText: string;
+  animation?: React.ComponentType<any>;
+  interactive?: boolean;
+  quiz?: {
+    question: string;
+    options: string[];
+    correct: number;
+    explanation: string;
+  };
+}
+
+const Adventure: React.FC = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [showQuiz, setShowQuiz] = useState(false);
+  const [quizAnswer, setQuizAnswer] = useState<number | null>(null);
+  const [showQuizResult, setShowQuizResult] = useState(false);
+  const { speak, stop, speaking } = useTTS();
+  const slideRef = useRef<HTMLDivElement>(null);
+
+  // 75 educational slides covering space weather concepts
+  const slides: Slide[] = [
+    // Introduction (Slides 1-3)
+    {
+      id: 1,
+      title: "🌟 Welcome to Your Space Weather Adventure! 🌟",
+      content: "Get ready to explore the amazing world of space weather! We'll learn about the Sun, solar flares, and how they affect Earth. This adventure is designed just for you!",
+      ttsText: "Welcome to your space weather adventure! Get ready to explore the amazing world of space weather. We'll learn about the Sun, solar flares, and how they affect Earth. This adventure is designed just for you!",
+      animation: ElementarySpaceAdventure3D
+    },
+    {
+      id: 2,
+      title: "� What is Space Weather?",
+      content: "Space weather is like Earth's weather, but in space! It includes things like solar flares, solar wind, and magnetic storms that can affect our planet and technology.",
+      ttsText: "Space weather is like Earth's weather, but in space! It includes things like solar flares, solar wind, and magnetic storms that can affect our planet and technology.",
+      animation: SpaceStormSimulation3D
+    },
+    {
+      id: 3,
+      title: "� Why Study Space Weather?",
+      content: "Space weather affects our technology, astronauts in space, and even power grids on Earth. By understanding it, we can protect ourselves and our equipment!",
+      ttsText: "Space weather affects our technology, astronauts in space, and even power grids on Earth. By understanding it, we can protect ourselves and our equipment!",
+      animation: EarthImpact3D
+    },
+
+    // The Sun Basics (Slides 4-14)
+    {
+      id: 4,
+      title: "☀️ Meet Our Sun - The Star of Our Solar System",
+      content: "Our Sun is a giant ball of hot gas that gives us light and heat. It's so big that 1.3 million Earths could fit inside it!",
+      ttsText: "Our Sun is a giant ball of hot gas that gives us light and heat. It's so big that 1.3 million Earths could fit inside it!",
+      animation: SolarFormation3D
+    },
+    {
+      id: 5,
+      title: "🔥 The Sun's Incredible Heat",
+      content: "The Sun's surface is about 5,500°C (9,932°F) - that's hot enough to melt almost anything! The center is even hotter at 15 million°C!",
+      ttsText: "The Sun's surface is about 5,500 degrees Celsius - that's hot enough to melt almost anything! The center is even hotter at 15 million degrees Celsius!",
+      animation: SolarFormation3D
+    },
+    {
+      id: 6,
+      title: "⚡ How the Sun Makes Energy",
+      content: "The Sun makes energy by fusing hydrogen atoms together to make helium. This process is called nuclear fusion and it creates enormous amounts of energy!",
+      ttsText: "The Sun makes energy by fusing hydrogen atoms together to make helium. This process is called nuclear fusion and it creates enormous amounts of energy!",
+      animation: SolarFormation3D
+    },
+    {
+      id: 7,
+      title: "🌞 The Sun's Layers",
+      content: "The Sun has different layers: the core (center), radiative zone, convective zone, photosphere (what we see), chromosphere, and corona (outer atmosphere).",
+      ttsText: "The Sun has different layers: the core at the center, radiative zone, convective zone, photosphere which is what we see, chromosphere, and corona which is the outer atmosphere.",
+      animation: SolarFormation3D
+    },
+    {
+      id: 8,
+      title: "🌍 The Sun and Earth's Distance",
+      content: "Earth is about 93 million miles (150 million kilometers) away from the Sun. Light from the Sun takes about 8 minutes to reach Earth!",
+      ttsText: "Earth is about 93 million miles away from the Sun. Light from the Sun takes about 8 minutes to reach Earth!"
+    },
+    {
+      id: 9,
+      title: "⭐ Sunspots - Dark Spots on the Sun",
+      content: "Sunspots are dark, cooler areas on the Sun's surface. They appear dark because they're cooler than the surrounding areas, but they're still very hot!",
+      ttsText: "Sunspots are dark, cooler areas on the Sun's surface. They appear dark because they're cooler than the surrounding areas, but they're still very hot!",
+      animation: SolarFormation3D
+    },
+    {
+      id: 10,
+      title: "🌊 Solar Wind - The Sun's Breath",
+      content: "Solar wind is a stream of charged particles that constantly flows from the Sun. It's like the Sun is breathing out tiny particles in all directions!",
+      ttsText: "Solar wind is a stream of charged particles that constantly flows from the Sun. It's like the Sun is breathing out tiny particles in all directions!",
+      animation: SpaceStormSimulation3D
+    },
+    {
+      id: 11,
+      title: "🔄 The Sun's Magnetic Field",
+      content: "The Sun has a magnetic field that's much stronger than Earth's. This magnetic field helps create solar flares and other space weather events.",
+      ttsText: "The Sun has a magnetic field that's much stronger than Earth's. This magnetic field helps create solar flares and other space weather events.",
+      animation: Magnetosphere3D
+    },
+    {
+      id: 12,
+      title: "📊 The Sun's 11-Year Cycle",
+      content: "The Sun goes through an 11-year cycle where sunspot activity increases and decreases. During solar maximum, we see more sunspots and solar flares.",
+      ttsText: "The Sun goes through an 11-year cycle where sunspot activity increases and decreases. During solar maximum, we see more sunspots and solar flares."
+    },
+    {
+      id: 13,
+      title: "🏆 The Sun's Amazing Statistics",
+      content: "The Sun is 109 times wider than Earth and has 330,000 times more mass! It makes up 99.8% of the mass of our entire solar system!",
+      ttsText: "The Sun is 109 times wider than Earth and has 330,000 times more mass! It makes up 99.8% of the mass of our entire solar system!",
+      animation: SolarFormation3D
+    },
+    {
+      id: 14,
+      title: "⏰ The Sun's Lifetime",
+      content: "Our Sun is about 4.6 billion years old and will live for another 5 billion years before it runs out of hydrogen fuel in its core.",
+      ttsText: "Our Sun is about 4.6 billion years old and will live for another 5 billion years before it runs out of hydrogen fuel in its core.",
+      animation: SolarFormation3D
+    },
+
+    // Solar Flares (Slides 15-22)
+    {
+      id: 15,
+      title: "� What is a Solar Flare?",
+      content: "A solar flare is a sudden, bright flash of light on the Sun. It happens when magnetic energy is released in the Sun's atmosphere. It's like a giant explosion!",
+      ttsText: "A solar flare is a sudden, bright flash of light on the Sun. It happens when magnetic energy is released in the Sun's atmosphere. It's like a giant explosion!",
+      animation: SolarFlareJourney3D
+    },
+    {
+      id: 16,
+      title: "⚡ Solar Flare Energy",
+      content: "Solar flares release incredible amounts of energy - equivalent to millions of nuclear bombs! But don't worry, most of this energy goes into space, not toward Earth.",
+      ttsText: "Solar flares release incredible amounts of energy - equivalent to millions of nuclear bombs! But don't worry, most of this energy goes into space, not toward Earth.",
+      animation: SolarFlareJourney3D
+    },
+    {
+      id: 17,
+      title: "🌈 Different Types of Solar Flares",
+      content: "Solar flares are classified by their strength: A, B, C, M, and X-class. X-class flares are the strongest and can affect Earth's technology.",
+      ttsText: "Solar flares are classified by their strength: A, B, C, M, and X-class. X-class flares are the strongest and can affect Earth's technology.",
+      animation: SolarFlareJourney3D
+    },
+    {
+      id: 18,
+      title: "⏱️ How Long Do Solar Flares Last?",
+      content: "Solar flares can last from just a few minutes to several hours. The biggest flares can last for many hours and release energy for days!",
+      ttsText: "Solar flares can last from just a few minutes to several hours. The biggest flares can last for many hours and release energy for days!",
+      animation: SolarFlareJourney3D
+    },
+    {
+      id: 19,
+      title: "🔍 How Scientists Detect Solar Flares",
+      content: "Scientists use special telescopes and satellites to watch the Sun 24/7. They can detect solar flares in different types of light that our eyes can't see.",
+      ttsText: "Scientists use special telescopes and satellites to watch the Sun 24/7. They can detect solar flares in different types of light that our eyes can't see."
+    },
+    {
+      id: 20,
+      title: "📡 Solar Flares and Radio Waves",
+      content: "Solar flares can affect radio communications on Earth. They can cause radio blackouts or make radio signals stronger in some areas.",
+      ttsText: "Solar flares can affect radio communications on Earth. They can cause radio blackouts or make radio signals stronger in some areas.",
+      animation: EarthImpact3D
+    },
+    {
+      id: 21,
+      title: "🎯 The Biggest Solar Flare Ever Recorded",
+      content: "The biggest solar flare ever recorded happened in 2003. It was so powerful that it damaged some satellites and caused radio blackouts around the world!",
+      ttsText: "The biggest solar flare ever recorded happened in 2003. It was so powerful that it damaged some satellites and caused radio blackouts around the world!",
+      animation: SolarFlareJourney3D
+    },
+    {
+      id: 22,
+      title: "🛡️ Protecting Against Solar Flares",
+      content: "Scientists and engineers work hard to protect our technology from solar flares. They design satellites and power grids to be more resistant to space weather.",
+      ttsText: "Scientists and engineers work hard to protect our technology from solar flares. They design satellites and power grids to be more resistant to space weather.",
+      animation: MiddleSchoolSpaceAdventure3D
+    },
+
+    // Coronal Mass Ejections (CMEs) (Slides 23-30)
+    {
+      id: 23,
+      title: "🌊 What is a Coronal Mass Ejection (CME)?",
+      content: "A CME is when the Sun throws out a huge bubble of gas and magnetic field into space. It's like the Sun is having a giant sneeze!",
+      ttsText: "A CME is when the Sun throws out a huge bubble of gas and magnetic field into space. It's like the Sun is having a giant sneeze!",
+      animation: SolarFlareJourney3D
+    },
+    {
+      id: 24,
+      title: "💨 CME Speed and Size",
+      content: "CMEs can travel at speeds of 1-3 million miles per hour! They can be as big as 50 times the size of Earth and contain billions of tons of material.",
+      ttsText: "CMEs can travel at speeds of 1 to 3 million miles per hour! They can be as big as 50 times the size of Earth and contain billions of tons of material.",
+      animation: SpaceStormSimulation3D
+    },
+    {
+      id: 25,
+      title: "🔗 CMEs and Solar Flares - Related Events",
+      content: "CMEs often happen together with solar flares, but they're different things. A solar flare is light and energy, while a CME is actual matter being thrown into space.",
+      ttsText: "CMEs often happen together with solar flares, but they're different things. A solar flare is light and energy, while a CME is actual matter being thrown into space.",
+      animation: SolarFlareJourney3D
+    },
+    {
+      id: 26,
+      title: "⏰ How Long Does a CME Take to Reach Earth?",
+      content: "It usually takes a CME 1-3 days to travel from the Sun to Earth. Scientists can predict when they'll arrive and how strong they'll be!",
+      ttsText: "It usually takes a CME 1 to 3 days to travel from the Sun to Earth. Scientists can predict when they'll arrive and how strong they'll be!",
+      animation: SpaceStormSimulation3D
+    },
+    {
+      id: 27,
+      title: "🎯 CME Direction - Not All Hit Earth",
+      content: "Most CMEs don't hit Earth directly. They can go in any direction, and only some are aimed toward our planet. Scientists watch carefully to see which ones might affect us.",
+      ttsText: "Most CMEs don't hit Earth directly. They can go in any direction, and only some are aimed toward our planet. Scientists watch carefully to see which ones might affect us.",
+      animation: SpaceStormSimulation3D
+    },
+    {
+      id: 28,
+      title: "📊 CME Classification",
+      content: "CMEs are classified by their speed and direction. Fast CMEs (over 1,000 km/s) are more likely to cause strong space weather effects on Earth.",
+      ttsText: "CMEs are classified by their speed and direction. Fast CMEs over 1,000 kilometers per second are more likely to cause strong space weather effects on Earth."
+    },
+    {
+      id: 29,
+      title: "🛰️ How We Study CMEs",
+      content: "Scientists use special satellites like SOHO and STEREO to watch CMEs as they travel through space. These satellites help us understand and predict space weather.",
+      ttsText: "Scientists use special satellites like SOHO and STEREO to watch CMEs as they travel through space. These satellites help us understand and predict space weather."
+    },
+    {
+      id: 30,
+      title: "🌍 CMEs and Earth's Magnetic Field",
+      content: "When a CME reaches Earth, it interacts with our planet's magnetic field. This interaction can cause beautiful auroras and sometimes problems with technology.",
+      ttsText: "When a CME reaches Earth, it interacts with our planet's magnetic field. This interaction can cause beautiful auroras and sometimes problems with technology.",
+      animation: Magnetosphere3D
+    },
+
+    // Earth's Protection and Impact (Slides 31-38)
+    {
+      id: 31,
+      title: "🛡️ Earth's Magnetic Shield",
+      content: "Earth has a magnetic field that acts like a shield, protecting us from harmful space weather. It's like an invisible force field around our planet!",
+      ttsText: "Earth has a magnetic field that acts like a shield, protecting us from harmful space weather. It's like an invisible force field around our planet!",
+      animation: Magnetosphere3D
+    },
+    {
+      id: 32,
+      title: "🌌 The Magnetosphere - Our Space Shield",
+      content: "The magnetosphere is the area around Earth where our magnetic field protects us. It's shaped like a teardrop and extends far into space!",
+      ttsText: "The magnetosphere is the area around Earth where our magnetic field protects us. It's shaped like a teardrop and extends far into space!",
+      animation: Magnetosphere3D
+    },
+    {
+      id: 33,
+      title: "🌍 What Happens When Space Weather Hits Earth?",
+      content: "When solar flares and CMEs reach Earth, they can cause beautiful auroras, affect satellites, and sometimes cause power outages. But they also create amazing light shows!",
+      ttsText: "When solar flares and CMEs reach Earth, they can cause beautiful auroras, affect satellites, and sometimes cause power outages. But they also create amazing light shows!",
+      animation: EarthImpact3D
+    },
+    {
+      id: 34,
+      title: "🌌 Aurora - Nature's Light Show",
+      content: "Auroras (Northern and Southern Lights) happen when charged particles from space weather hit Earth's atmosphere. They create beautiful dancing lights in the sky!",
+      ttsText: "Auroras, also called Northern and Southern Lights, happen when charged particles from space weather hit Earth's atmosphere. They create beautiful dancing lights in the sky!",
+      animation: EarthImpact3D
+    },
+    {
+      id: 35,
+      title: "📡 Space Weather and Technology",
+      content: "Space weather can affect GPS, radio communications, and power grids. Scientists work hard to make our technology more resistant to these effects.",
+      ttsText: "Space weather can affect GPS, radio communications, and power grids. Scientists work hard to make our technology more resistant to these effects.",
+      animation: HighSchoolSpaceAdventure3D
+    },
+    {
+      id: 36,
+      title: "🛰️ Protecting Satellites",
+      content: "Satellites in space are especially vulnerable to space weather. Engineers design them with special shielding and can put them in 'safe mode' during strong space weather.",
+      ttsText: "Satellites in space are especially vulnerable to space weather. Engineers design them with special shielding and can put them in safe mode during strong space weather.",
+      animation: HighSchoolSpaceAdventure3D
+    },
+    {
+      id: 37,
+      title: "⚡ Space Weather and Power Grids",
+      content: "Strong space weather can cause power outages by overloading power lines. The most famous example was in 1989 when Quebec lost power for 9 hours!",
+      ttsText: "Strong space weather can cause power outages by overloading power lines. The most famous example was in 1989 when Quebec lost power for 9 hours!",
+      animation: EarthImpact3D
+    },
+    {
+      id: 38,
+      title: "🔮 Predicting Space Weather",
+      content: "Scientists use computer models and observations to predict space weather. This helps us prepare for and protect against its effects on Earth.",
+      ttsText: "Scientists use computer models and observations to predict space weather. This helps us prepare for and protect against its effects on Earth.",
+      animation: MiddleSchoolSpaceAdventure3D
+    },
+
+    // Historical Events and Research (Slides 39-46)
+    {
+      id: 39,
+      title: "📅 The Carrington Event - 1859",
+      content: "The biggest space weather event ever recorded happened in 1859. It caused auroras visible worldwide and would have caused major problems if it happened today!",
+      ttsText: "The biggest space weather event ever recorded happened in 1859. It caused auroras visible worldwide and would have caused major problems if it happened today!"
+    },
+    {
+      id: 40,
+      title: "🌍 Space Weather Around the World",
+      content: "Space weather affects the whole world, but some places more than others. Areas near the North and South Poles see more auroras and space weather effects.",
+      ttsText: "Space weather affects the whole world, but some places more than others. Areas near the North and South Poles see more auroras and space weather effects."
+    },
+    {
+      id: 41,
+      title: "👨‍🚀 Space Weather and Astronauts",
+      content: "Astronauts in space need special protection from space weather. They can hide in shielded parts of the space station during strong solar storms.",
+      ttsText: "Astronauts in space need special protection from space weather. They can hide in shielded parts of the space station during strong solar storms."
+    },
+    {
+      id: 42,
+      title: "🔬 How Scientists Study Space Weather",
+      content: "Scientists use ground-based telescopes, satellites, and computer models to study space weather. They work together around the world to understand and predict it.",
+      ttsText: "Scientists use ground-based telescopes, satellites, and computer models to study space weather. They work together around the world to understand and predict it."
+    },
+    {
+      id: 43,
+      title: "🌐 Space Weather and Climate",
+      content: "While space weather doesn't directly cause climate change, it can affect Earth's upper atmosphere and may have small effects on our weather patterns.",
+      ttsText: "While space weather doesn't directly cause climate change, it can affect Earth's upper atmosphere and may have small effects on our weather patterns."
+    },
+    {
+      id: 44,
+      title: "🚀 Future of Space Weather Research",
+      content: "Scientists are developing better ways to predict space weather and protect our technology. New missions and instruments will help us understand space weather even better!",
+      ttsText: "Scientists are developing better ways to predict space weather and protect our technology. New missions and instruments will help us understand space weather even better!"
+    },
+    {
+      id: 45,
+      title: "📈 Space Weather Monitoring Network",
+      content: "There's a global network of observatories and satellites that constantly monitor the Sun and space weather, providing real-time data to scientists.",
+      ttsText: "There's a global network of observatories and satellites that constantly monitor the Sun and space weather, providing real-time data to scientists."
+    },
+    {
+      id: 46,
+      title: "📝 Space Weather Prediction Centers",
+      content: "Special prediction centers like NOAA's Space Weather Prediction Center work 24/7 to forecast space weather and warn about possible impacts on Earth.",
+      ttsText: "Special prediction centers like NOAA's Space Weather Prediction Center work 24/7 to forecast space weather and warn about possible impacts on Earth."
+    },
+
+    // The Sun's Influence (Slides 47-54)
+    {
+      id: 47,
+      title: "🌠 Solar Prominences - Fire Bridges in Space",
+      content: "Solar prominences are giant loops of glowing gas that extend outward from the Sun's surface. They can be hundreds of thousands of miles long!",
+      ttsText: "Solar prominences are giant loops of glowing gas that extend outward from the Sun's surface. They can be hundreds of thousands of miles long!",
+      animation: SolarFormation3D
+    },
+    {
+      id: 48,
+      title: "🕳️ Coronal Holes - The Sun's Open Windows",
+      content: "Coronal holes are cooler, less dense areas of the Sun's corona where magnetic field lines open into space, allowing solar wind to escape more easily.",
+      ttsText: "Coronal holes are cooler, less dense areas of the Sun's corona where magnetic field lines open into space, allowing solar wind to escape more easily."
+    },
+    {
+      id: 49,
+      title: "🌡️ Solar Minimum vs. Solar Maximum",
+      content: "During solar minimum, the Sun has fewer sunspots and less activity. During solar maximum, there are many sunspots and more solar flares and CMEs.",
+      ttsText: "During solar minimum, the Sun has fewer sunspots and less activity. During solar maximum, there are many sunspots and more solar flares and CMEs."
+    },
+    {
+      id: 50,
+      title: "📏 Measuring Solar Activity",
+      content: "Scientists measure solar activity using the sunspot number, solar flux, and by monitoring X-rays and other radiation from the Sun.",
+      ttsText: "Scientists measure solar activity using the sunspot number, solar flux, and by monitoring X-rays and other radiation from the Sun."
+    },
+    {
+      id: 51,
+      title: "👁️ The Sun in Different Wavelengths",
+      content: "Scientists observe the Sun in different wavelengths of light to see different layers and features, like using special glasses to see hidden details!",
+      ttsText: "Scientists observe the Sun in different wavelengths of light to see different layers and features, like using special glasses to see hidden details!"
+    },
+    {
+      id: 52,
+      title: "🔄 The Sun's Differential Rotation",
+      content: "The Sun doesn't rotate as a solid body - the equator rotates faster than the poles! This differential rotation helps create the Sun's complex magnetic field.",
+      ttsText: "The Sun doesn't rotate as a solid body - the equator rotates faster than the poles! This differential rotation helps create the Sun's complex magnetic field."
+    },
+    {
+      id: 53,
+      title: "💫 The Heliosphere - The Sun's Bubble",
+      content: "The heliosphere is a giant bubble created by the Sun's solar wind that surrounds our entire solar system, protecting us from galactic cosmic rays.",
+      ttsText: "The heliosphere is a giant bubble created by the Sun's solar wind that surrounds our entire solar system, protecting us from galactic cosmic rays."
+    },
+    {
+      id: 54,
+      title: "🔆 Solar Irradiance - The Sun's Energy Output",
+      content: "Solar irradiance is the amount of energy the Sun sends to Earth. It changes slightly during the solar cycle but remains remarkably stable over time.",
+      ttsText: "Solar irradiance is the amount of energy the Sun sends to Earth. It changes slightly during the solar cycle but remains remarkably stable over time."
+    },
+
+    // Space Weather Effects (Slides 55-62)
+    {
+      id: 55,
+      title: "📱 Space Weather and Your Cell Phone",
+      content: "Strong space weather can disrupt cell phone signals and GPS navigation. Your phone might lose signal or give wrong directions during solar storms!",
+      ttsText: "Strong space weather can disrupt cell phone signals and GPS navigation. Your phone might lose signal or give wrong directions during solar storms!",
+      animation: EarthImpact3D
+    },
+    {
+      id: 56,
+      title: "✈️ Space Weather and Airplanes",
+      content: "Airlines sometimes change flight paths during space weather events to avoid communication problems and to reduce radiation exposure at high altitudes.",
+      ttsText: "Airlines sometimes change flight paths during space weather events to avoid communication problems and to reduce radiation exposure at high altitudes."
+    },
+    {
+      id: 57,
+      title: "🚢 Space Weather and Ship Navigation",
+      content: "Ships use compasses and GPS for navigation, both of which can be affected by space weather. In the past, sailors used to navigate by the stars!",
+      ttsText: "Ships use compasses and GPS for navigation, both of which can be affected by space weather. In the past, sailors used to navigate by the stars!"
+    },
+    {
+      id: 58,
+      title: "🧭 Space Weather and Compasses",
+      content: "During strong geomagnetic storms, compasses might not point to magnetic north correctly. This affected explorers in the past who relied on compasses!",
+      ttsText: "During strong geomagnetic storms, compasses might not point to magnetic north correctly. This affected explorers in the past who relied on compasses!"
+    },
+    {
+      id: 59,
+      title: "💸 The Economic Impact of Space Weather",
+      content: "A severe space weather event could cost billions of dollars in damage to satellites, power grids, and communications. That's why prediction is so important!",
+      ttsText: "A severe space weather event could cost billions of dollars in damage to satellites, power grids, and communications. That's why prediction is so important!"
+    },
+    {
+      id: 60,
+      title: "👷 Jobs in Space Weather",
+      content: "Many people work in space weather research and forecasting, including scientists, engineers, mathematicians, and computer programmers. It's an exciting field!",
+      ttsText: "Many people work in space weather research and forecasting, including scientists, engineers, mathematicians, and computer programmers. It's an exciting field!"
+    },
+    {
+      id: 61,
+      title: "🏡 Space Weather and Your Home",
+      content: "Space weather can cause power outages and affect electronics in your home. Having emergency supplies and a backup power source is always a good idea!",
+      ttsText: "Space weather can cause power outages and affect electronics in your home. Having emergency supplies and a backup power source is always a good idea!"
+    },
+    {
+      id: 62,
+      title: "🌟 Space Weather and Astronomy",
+      content: "Space weather can make auroras visible farther from the poles, giving more people a chance to see these beautiful natural light shows!",
+      ttsText: "Space weather can make auroras visible farther from the poles, giving more people a chance to see these beautiful natural light shows!",
+      animation: EarthImpact3D
+    },
+
+    // Space Weather and Other Planets (Slides 63-70)
+    {
+      id: 63,
+      title: "🪐 Space Weather on Other Planets",
+      content: "Other planets in our solar system also experience space weather! Jupiter has the strongest magnetic field and the most impressive auroras.",
+      ttsText: "Other planets in our solar system also experience space weather! Jupiter has the strongest magnetic field and the most impressive auroras."
+    },
+    {
+      id: 64,
+      title: "🔴 Space Weather on Mars",
+      content: "Mars doesn't have a strong magnetic field like Earth, so space weather hits its surface directly. This is a challenge for future astronauts going to Mars!",
+      ttsText: "Mars doesn't have a strong magnetic field like Earth, so space weather hits its surface directly. This is a challenge for future astronauts going to Mars!"
+    },
+    {
+      id: 65,
+      title: "🔵 Space Weather on Mercury",
+      content: "Mercury is very close to the Sun and gets hit by intense space weather. It has a magnetic field, but it's not strong enough to fully protect the planet.",
+      ttsText: "Mercury is very close to the Sun and gets hit by intense space weather. It has a magnetic field, but it's not strong enough to fully protect the planet."
+    },
+    {
+      id: 66,
+      title: "🪐 Jupiter's Magnetic Field",
+      content: "Jupiter's magnetic field is the strongest in the solar system - about 20,000 times stronger than Earth's! It creates a huge magnetosphere that protects its moons.",
+      ttsText: "Jupiter's magnetic field is the strongest in the solar system - about 20,000 times stronger than Earth's! It creates a huge magnetosphere that protects its moons."
+    },
+    {
+      id: 67,
+      title: "🪐 Saturn's Auroras",
+      content: "Saturn has beautiful auroras at its poles, just like Earth. They're caused by the same process - charged particles hitting the atmosphere along magnetic field lines.",
+      ttsText: "Saturn has beautiful auroras at its poles, just like Earth. They're caused by the same process - charged particles hitting the atmosphere along magnetic field lines."
+    },
+    {
+      id: 68,
+      title: "🛰️ Studying Space Weather from Space",
+      content: "Special satellites study the Sun and space weather from space. Some are positioned between the Sun and Earth to give early warnings of solar storms!",
+      ttsText: "Special satellites study the Sun and space weather from space. Some are positioned between the Sun and Earth to give early warnings of solar storms!"
+    },
+    {
+      id: 69,
+      title: "💧 The Sun and Water on Mars",
+      content: "Scientists think the Sun's more active past and space weather played a role in Mars losing most of its atmosphere and water over billions of years.",
+      ttsText: "Scientists think the Sun's more active past and space weather played a role in Mars losing most of its atmosphere and water over billions of years."
+    },
+    {
+      id: 70,
+      title: "🚀 Space Weather and Space Exploration",
+      content: "As we explore more of the solar system, understanding space weather becomes even more important for protecting astronauts and spacecraft.",
+      ttsText: "As we explore more of the solar system, understanding space weather becomes even more important for protecting astronauts and spacecraft.",
+      animation: HighSchoolSpaceAdventure3D
+    },
+
+    // Conclusion and Quiz (Slides 71-75)
+    {
+      id: 71,
+      title: "🎓 What We've Learned",
+      content: "We've explored the Sun, solar flares, CMEs, and how they affect Earth. Space weather is a fascinating field that affects our daily lives and technology!",
+      ttsText: "We've explored the Sun, solar flares, CMEs, and how they affect Earth. Space weather is a fascinating field that affects our daily lives and technology!"
+    },
+    {
+      id: 72,
+      title: "🔍 Your Role in Space Weather Awareness",
+      content: "You can help by learning more about space weather, sharing what you know with others, and being prepared for possible impacts on technology.",
+      ttsText: "You can help by learning more about space weather, sharing what you know with others, and being prepared for possible impacts on technology."
+    },
+    {
+      id: 73,
+      title: "📚 Resources for Learning More",
+      content: "There are many great websites, books, and apps where you can learn more about space weather. NASA's website has excellent resources for all ages!",
+      ttsText: "There are many great websites, books, and apps where you can learn more about space weather. NASA's website has excellent resources for all ages!"
+    },
+    {
+      id: 74,
+      title: "🧠 Test Your Knowledge!",
+      content: "Let's see how much you've learned about space weather! Answer this question to test your understanding.",
+      ttsText: "Let's see how much you've learned about space weather! Answer this question to test your understanding.",
+      interactive: true,
+      quiz: {
+        question: "What causes solar flares?",
+        options: [
+          "The Sun getting too hot",
+          "Magnetic energy being released in the Sun's atmosphere",
+          "Earth's gravity pulling on the Sun",
+          "The Sun spinning too fast"
+        ],
+        correct: 1,
+        explanation: "Solar flares happen when magnetic energy is suddenly released in the Sun's atmosphere, creating bright flashes of light!"
+      }
+    },
+    {
+      id: 75,
+      title: "🌟 Congratulations, Space Weather Explorer!",
+      content: "You've completed your space weather adventure! You now know about the Sun, solar flares, CMEs, and how they affect Earth. Keep exploring the amazing world of space science!",
+      ttsText: "Congratulations, Space Weather Explorer! You've completed your space weather adventure! You now know about the Sun, solar flares, CMEs, and how they affect Earth. Keep exploring the amazing world of space science!"
+    }
+  ];
+
+  // Filter slides based on selected grade
+  const filteredSlides = slides;
+
+  const currentSlideData = filteredSlides[currentSlide];
+  const progress = ((currentSlide + 1) / filteredSlides.length) * 100;
+
+  const nextSlide = () => {
+    if (currentSlide < filteredSlides.length - 1) {
+      setCurrentSlide(currentSlide + 1);
+      setShowQuiz(false);
+      setQuizAnswer(null);
+      setShowQuizResult(false);
+    }
+  };
+
+  const prevSlide = () => {
+    if (currentSlide > 0) {
+      setCurrentSlide(currentSlide - 1);
+      setShowQuiz(false);
+      setQuizAnswer(null);
+      setShowQuizResult(false);
+    }
+  };
+
+  const goToSlide = (slideIndex: number) => {
+    setCurrentSlide(slideIndex);
+    setShowQuiz(false);
+    setQuizAnswer(null);
+    setShowQuizResult(false);
+  };
+
+  const handleQuizAnswer = (answerIndex: number) => {
+    setQuizAnswer(answerIndex);
+    setShowQuizResult(true);
+  };
+
+  const resetAdventure = () => {
+    setCurrentSlide(0);
+    setShowQuiz(false);
+    setQuizAnswer(null);
+    setShowQuizResult(false);
+    stop();
+  };
+
+  // Auto-advance TTS when slide changes
+  useEffect(() => {
+    if (currentSlideData && !isPlaying) {
+      const timer = setTimeout(() => {
+        if (currentSlideData.ttsText) {
+          speak(currentSlideData.ttsText, { 
+            rate: 0.85,  // Slightly slower for kids
+            pitch: 1.05, // Slightly higher pitch for enthusiastic tone
+            isChildFriendly: true,
+            addPauses: true
+          });
+          setIsPlaying(true);
+        }
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [currentSlide, currentSlideData, speak, isPlaying]);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-black via-indigo-950 to-black">
+      {/* Header */}
+      <div className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-yellow-500/50 p-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={resetAdventure}
+              className="text-yellow-400 border-yellow-500/50 hover:bg-yellow-500/10"
+            >
+              <Home className="w-4 h-4 mr-2" />
+              Home
+            </Button>
+            <div className="text-white">
+              <h1 className="text-lg font-bold">Space Weather Adventure</h1>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <TTSControls 
+              text={currentSlideData?.ttsText || ""}
+              label="Listen"
+              isChildFriendly={true}
+              addPauses={true}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Progress Bar */}
+      <div className="px-4 py-2">
+        <div className="max-w-7xl mx-auto">
+          <Progress value={progress} className="h-2" />
+          <div className="flex justify-between text-sm text-gray-400 mt-2">
+            <span>Slide {currentSlide + 1} of {filteredSlides.length}</span>
+            <span>{Math.round(progress)}% Complete</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto p-4">
+        <div ref={slideRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center min-h-[70vh]">
+          {/* Left Side - Content */}
+          <div className="space-y-6">
+            <Card className="bg-black/80 backdrop-blur-md border-yellow-500/50">
+              <CardContent className="p-6">
+                <h2 className="text-3xl font-bold text-yellow-400 mb-4">
+                  {currentSlideData?.title}
+                </h2>
+                <p className="text-lg text-gray-300 leading-relaxed">
+                  {currentSlideData?.content}
+                </p>
+                
+                {/* Listen button for every slide */}
+                <div className="mt-4">
+                  <TTSControls 
+                    text={currentSlideData?.ttsText || ""}
+                    label="Listen to this slide"
+                    isChildFriendly={true}
+                    addPauses={true}
+                    className="mt-2"
+                  />
+                </div>
+                
+                {/* Begin Adventure Button for the first slide */}
+                {currentSlide === 0 && (
+                  <div className="mt-6">
+                    <Button
+                      onClick={() => {
+                        // Create a more engaging first-time experience
+                        const welcomeText = currentSlideData.ttsText;
+                        speak(welcomeText, { 
+                          rate: 0.80,       // Slower for clearer understanding
+                          pitch: 1.15,      // Higher pitch for excitement
+                          isChildFriendly: true,
+                          addPauses: true,
+                          volume: 1
+                        });
+                        setIsPlaying(true);
+                      }}
+                      className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-black font-bold py-2 px-6 text-lg animate-pulse"
+                    >
+                      Begin Adventure!
+                    </Button>
+                  </div>
+                )}
+                
+                {/* Quiz Section */}
+                {currentSlideData?.quiz && !showQuiz && (
+                  <div className="mt-6">
+                    <Button
+                      onClick={() => setShowQuiz(true)}
+                      className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700"
+                    >
+                      Take Quiz
+                    </Button>
+                  </div>
+                )}
+
+                {currentSlideData?.quiz && showQuiz && (
+                  <div className="mt-6 p-4 bg-gray-900/50 rounded-lg">
+                    <h3 className="text-xl font-bold text-yellow-400 mb-4">
+                      {currentSlideData.quiz.question}
+                    </h3>
+                    
+                    {/* Listen button for quiz question */}
+                    <div className="mb-4">
+                      <TTSControls 
+                        text={currentSlideData.quiz.question}
+                        label="Listen to question"
+                        isChildFriendly={true}
+                        addPauses={true}
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      {currentSlideData.quiz.options.map((option, index) => (
+                        <Button
+                          key={index}
+                          variant={quizAnswer === index ? "default" : "outline"}
+                          className={`w-full text-left justify-start ${
+                            showQuizResult && index === currentSlideData.quiz!.correct
+                              ? "bg-green-600 hover:bg-green-700"
+                              : showQuizResult && quizAnswer === index && index !== currentSlideData.quiz!.correct
+                              ? "bg-red-600 hover:bg-red-700"
+                              : ""
+                          }`}
+                          onClick={() => handleQuizAnswer(index)}
+                          disabled={showQuizResult}
+                        >
+                          {String.fromCharCode(65 + index)}. {option}
+                        </Button>
+                      ))}
+                    </div>
+                    {showQuizResult && (
+                      <div className="mt-4 p-3 bg-gray-800 rounded">
+                        <p className={`font-bold ${
+                          quizAnswer === currentSlideData.quiz!.correct ? "text-green-400" : "text-red-400"
+                        }`}>
+                          {quizAnswer === currentSlideData.quiz!.correct ? "Correct!" : "Not quite right."}
+                        </p>
+                        <p className="text-gray-300 mt-2">
+                          {currentSlideData.quiz!.explanation}
+                        </p>
+                        
+                        {/* Listen button for quiz explanation */}
+                        <div className="mt-3">
+                          <TTSControls 
+                            text={currentSlideData.quiz!.explanation}
+                            label="Listen to explanation"
+                            isChildFriendly={true}
+                            addPauses={true}
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Right Side - Animation */}
+          <div className="flex justify-center">
+            {currentSlideData?.animation && (
+              <div className="w-full h-96">
+                <currentSlideData.animation className="w-full h-full" />
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Navigation */}
+      <div className="sticky bottom-0 bg-black/80 backdrop-blur-md border-t border-yellow-500/50 p-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <Button
+            onClick={prevSlide}
+            disabled={currentSlide === 0}
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:opacity-50"
+          >
+            <ChevronLeft className="w-4 h-4 mr-2" />
+            Previous
+          </Button>
+
+          {/* Slide Indicators */}
+          <div className="flex gap-2">
+            {filteredSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-3 h-3 rounded-full transition-colors ${
+                  index === currentSlide
+                    ? "bg-yellow-400"
+                    : "bg-gray-600 hover:bg-gray-500"
+                }`}
+              />
+            ))}
+          </div>
+
+          <Button
+            onClick={nextSlide}
+            disabled={currentSlide === filteredSlides.length - 1}
+            className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 disabled:opacity-50"
+          >
+            Next
+            <ChevronRight className="w-4 h-4 ml-2" />
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Adventure;
