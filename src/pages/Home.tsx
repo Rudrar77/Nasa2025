@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import AnimatedBackground from "@/components/ui/animated-background";
 import { 
   Satellite, 
   Sun, 
@@ -129,8 +130,12 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Animated Background */}
+      <AnimatedBackground />
+      
+      {/* Content Container */}
+      <div className="relative z-10 container mx-auto px-4 py-8">
         {/* Hero Section */}
         <div className="text-center mb-12">
           <h1 className="text-6xl font-bold text-white mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
@@ -141,13 +146,13 @@ const Home = () => {
             interactive experiences, and cutting-edge space exploration technology
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
+            <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 backdrop-blur-sm">
               <Link to="/adventure">
                 <Rocket className="h-5 w-5 mr-2" />
                 Start Your Adventure
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10">
+            <Button asChild variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10 backdrop-blur-sm">
               <Link to="/real-time-data">
                 <Activity className="h-5 w-5 mr-2" />
                 View Live Data
@@ -307,7 +312,7 @@ const Home = () => {
           )}
 
           <div className="text-center mt-6">
-            <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/10">
+            <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/10 backdrop-blur-sm">
               <Link to="/real-time-data">
                 View Full Dashboard
                 <ArrowRight className="h-4 w-4 ml-2" />
@@ -318,35 +323,18 @@ const Home = () => {
 
         <Separator className="bg-white/20 mb-12" />
 
-        {/* Feature Categories */}
+        {/* Feature Categories - Updated to 3 columns */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-white text-center mb-8">Explore the Universe</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Interactive Experiences */}
-            <Card className="bg-white/5 backdrop-blur-md border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-              <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Rocket className="h-8 w-8 text-blue-400" />
-                </div>
-                <h3 className="text-white font-semibold mb-2">3D Exploration</h3>
-                <p className="text-gray-300 text-sm mb-4">Experience immersive 3D space environments</p>
-                <Button asChild variant="ghost" className="text-blue-400 hover:bg-blue-500/20">
-                  <Link to="/iss-tour">
-                    Explore Now
-                    <ArrowRight className="h-4 w-4 ml-1" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Space Weather */}
-            <Card className="bg-white/5 backdrop-blur-md border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-              <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 group">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-yellow-500/30 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                   <Zap className="h-8 w-8 text-yellow-400" />
                 </div>
-                <h3 className="text-white font-semibold mb-2">Space Weather</h3>
-                <p className="text-gray-300 text-sm mb-4">Monitor solar storms and cosmic events</p>
+                <h3 className="text-xl font-semibold text-white mb-4">Space Weather</h3>
+                <p className="text-gray-300 mb-6">Monitor solar storms and cosmic events</p>
                 <Button asChild variant="ghost" className="text-yellow-400 hover:bg-yellow-500/20">
                   <Link to="/space-weather">
                     Monitor Now
@@ -357,16 +345,16 @@ const Home = () => {
             </Card>
 
             {/* Educational Content */}
-            <Card className="bg-white/5 backdrop-blur-md border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-              <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 group">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-green-500/30 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                   <BookOpen className="h-8 w-8 text-green-400" />
                 </div>
-                <h3 className="text-white font-semibold mb-2">Education</h3>
-                <p className="text-gray-300 text-sm mb-4">Learn space science and astronomy</p>
+                <h3 className="text-xl font-semibold text-white mb-4">Interactive Learning</h3>
+                <p className="text-gray-300 mb-6">Discover space through engaging educational content</p>
                 <Button asChild variant="ghost" className="text-green-400 hover:bg-green-500/20">
                   <Link to="/education">
-                    Learn Now
+                    Learn More
                     <ArrowRight className="h-4 w-4 ml-1" />
                   </Link>
                 </Button>
@@ -374,16 +362,16 @@ const Home = () => {
             </Card>
 
             {/* Interactive Stories */}
-            <Card className="bg-white/5 backdrop-blur-md border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-              <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Play className="h-8 w-8 text-purple-400" />
+            <Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 group">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-purple-500/30 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Rocket className="h-8 w-8 text-purple-400" />
                 </div>
-                <h3 className="text-white font-semibold mb-2">Stories</h3>
-                <p className="text-gray-300 text-sm mb-4">Experience interactive space adventures</p>
+                <h3 className="text-xl font-semibold text-white mb-4">Adventure</h3>
+                <p className="text-gray-300 mb-6">Learn in the interactive way</p>
                 <Button asChild variant="ghost" className="text-purple-400 hover:bg-purple-500/20">
-                  <Link to="/story">
-                    Play Now
+                  <Link to="/adventure">
+                    Learn
                     <ArrowRight className="h-4 w-4 ml-1" />
                   </Link>
                 </Button>
@@ -394,22 +382,21 @@ const Home = () => {
 
         {/* Quick Access Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <Button asChild variant="outline" className="h-20 flex-col border-white/20 text-white hover:bg-white/10">
+          <Button asChild variant="outline" className="h-20 flex-col border-white/20 text-white hover:bg-white/10 backdrop-blur-sm">
             <Link to="/solar-system">
               <Globe className="h-6 w-6 mb-2" />
               Solar System
             </Link>
           </Button>
         
-          
-          <Button asChild variant="outline" className="h-20 flex-col border-white/20 text-white hover:bg-white/10">
+          <Button asChild variant="outline" className="h-20 flex-col border-white/20 text-white hover:bg-white/10 backdrop-blur-sm">
             <Link to="/eclipses">
               <Sun className="h-6 w-6 mb-2" />
               Eclipses
             </Link>
           </Button>
           
-          <Button asChild variant="outline" className="h-20 flex-col border-white/20 text-white hover:bg-white/10">
+          <Button asChild variant="outline" className="h-20 flex-col border-white/20 text-white hover:bg-white/10 backdrop-blur-sm">
             <Link to="/quiz">
               <Telescope className="h-6 w-6 mb-2" />
               Space Quiz
@@ -456,6 +443,56 @@ const Home = () => {
             </div>
           </CardContent>
         </Card>
+
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Real-time Data */}
+          <Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 group">
+            <CardContent className="p-8 text-center">
+              <div className="w-16 h-16 bg-blue-500/30 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                <Satellite className="h-8 w-8 text-blue-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-4">Real-time Data</h3>
+              <p className="text-gray-300 mb-6">Access live satellite feeds and space mission updates</p>
+              <Button variant="ghost" className="text-blue-400 hover:bg-blue-500/20">
+                Explore Now
+                <ArrowRight className="h-4 w-4 ml-1" />
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Interactive Learning */}
+          <Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 group">
+            <CardContent className="p-8 text-center">
+              <div className="w-16 h-16 bg-green-500/30 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                <BookOpen className="h-8 w-8 text-green-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-4">Interactive Learning</h3>
+              <p className="text-gray-300 mb-6">Discover space through engaging educational content</p>
+              <Button variant="ghost" asChild className="text-green-400 hover:bg-green-500/20">
+                <Link to="/education">
+                  Learn More
+                  <ArrowRight className="h-4 w-4 ml-1" />
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Mission Control */}
+          <Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 group">
+            <CardContent className="p-8 text-center">
+              <div className="w-16 h-16 bg-purple-500/30 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                <Rocket className="h-8 w-8 text-purple-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-4">Mission Control</h3>
+              <p className="text-gray-300 mb-6">Track ongoing space missions and spacecraft</p>
+              <Button variant="ghost" className="text-purple-400 hover:bg-purple-500/20">
+                Track Missions
+                <ArrowRight className="h-4 w-4 ml-1" />
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );

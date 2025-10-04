@@ -1,503 +1,521 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Progress } from "@/components/ui/progress";
-import { Separator } from "@/components/ui/separator";
+import AnimatedBackground from "@/components/ui/animated-background";
 import { 
   BookOpen, 
   Play, 
-  Star, 
-  Rocket, 
-  Globe, 
-  Telescope, 
+  Award, 
+  Users, 
+  Star,
+  Rocket,
+  Globe,
+  Telescope,
   Atom,
-  GraduationCap,
-  Video,
+  Zap,
+  ArrowRight,
   CheckCircle,
-  Lock
+  PlayCircle,
+  ExternalLink
 } from "lucide-react";
 
-interface VideoLesson {
-  id: string;
-  title: string;
-  description: string;
-  videoUrl: string;
-  thumbnailUrl: string;
-  difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
-  completed?: boolean;
-  locked?: boolean;
-}
-
-interface Course {
-  id: string;
-  title: string;
-  description: string;
-  icon: any;
-  color: string;
-  lessons: VideoLesson[];
-  progress: number;
-}
-
 const Education = () => {
-  const [selectedCourse, setSelectedCourse] = useState<string>('astronomy');
-  const [watchedVideos, setWatchedVideos] = useState<Set<string>>(new Set());
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [selectedCourse, setSelectedCourse] = useState<number | null>(null);
 
-  const courses: Course[] = [
+  const courses = [
     {
-      id: 'astronomy',
-      title: 'Astronomy Fundamentals',
-      description: 'Learn the basics of stars, planets, and galaxies',
-      icon: Telescope,
-      color: 'purple',
-      progress: 35,
-      lessons: [
+      id: 1,
+      title: "Introduction to Space Exploration",
+      description: "Learn the fundamentals of space exploration, from early rockets to modern missions.",
+      category: "basics",
+      level: "Beginner",
+      icon: <Rocket className="h-6 w-6" />,
+      progress: 0,
+      videos: [
         {
-          id: 'ast-1',
-          title: 'Introduction to the Universe',
-          description: 'Understanding the scale and structure of the cosmos',
-          videoUrl: 'https://www.youtube.com/embed/HEheh1BH34Q',
-          thumbnailUrl: 'https://img.youtube.com/vi/HEheh1BH34Q/maxresdefault.jpg',
-          difficulty: 'Beginner'
+          id: 1,
+          title: "What is Space Exploration?",
+          url: "https://www.youtube.com/watch?v=VFSXtFmNC7s",
+          completed: false,
+          description: "Introduction to the concept of space exploration and its importance"
         },
         {
-          id: 'ast-2',
-          title: 'Our Solar System',
-          description: 'Exploring planets, moons, and other celestial bodies',
-          videoUrl: 'https://www.youtube.com/embed/libKVRa01L8',
-          thumbnailUrl: 'https://img.youtube.com/vi/libKVRa01L8/maxresdefault.jpg',
-          difficulty: 'Beginner'
+          id: 2,
+          title: "History of Rockets",
+          url: "https://www.youtube.com/watch?v=dlo3rBb7Ev0",
+          completed: false,
+          description: "From ancient Chinese rockets to modern SpaceX"
         },
         {
-          id: 'ast-3',
-          title: 'Stars and Stellar Evolution',
-          description: 'How stars are born, live, and die',
-          videoUrl: 'https://www.youtube.com/embed/PM9CQDlQI0A',
-          thumbnailUrl: 'https://img.youtube.com/vi/PM9CQDlQI0A/maxresdefault.jpg',
-          difficulty: 'Intermediate'
+          id: 3,
+          title: "The Space Race",
+          url: "https://www.youtube.com/watch?v=xvaEvCNZymo",
+          completed: false,
+          description: "Competition between USA and USSR in space exploration"
         },
         {
-          id: 'ast-4',
-          title: 'Galaxies and Dark Matter',
-          description: 'Understanding galactic structures and mysterious dark matter',
-          videoUrl: 'https://www.youtube.com/embed/QAa2O_8wBUQ',
-          thumbnailUrl: 'https://img.youtube.com/vi/QAa2O_8wBUQ/maxresdefault.jpg',
-          difficulty: 'Advanced'
+          id: 4,
+          title: "Modern Space Missions",
+          url: "https://www.youtube.com/watch?v=oHHSSJDJ4oo",
+          completed: false,
+          description: "Current and future space exploration missions"
         },
         {
-          id: 'ast-5',
-          title: 'Exoplanets and the Search for Life',
-          description: 'Discovering worlds beyond our solar system',
-          videoUrl: 'https://www.youtube.com/embed/yDmGnGUEHUU',
-          thumbnailUrl: 'https://img.youtube.com/vi/yDmGnGUEHUU/maxresdefault.jpg',
-          difficulty: 'Intermediate'
+          id: 5,
+          title: "International Space Station",
+          url: "https://www.youtube.com/watch?v=SGP6Y0Pnhe4",
+          completed: false,
+          description: "Life and research aboard the ISS"
         },
         {
-          id: 'ast-6',
-          title: 'Black Holes and Spacetime',
-          description: 'Exploring the most mysterious objects in the universe',
-          videoUrl: 'https://www.youtube.com/embed/e-P5IFTqB98',
-          thumbnailUrl: 'https://img.youtube.com/vi/e-P5IFTqB98/maxresdefault.jpg',
-          difficulty: 'Advanced',
-          locked: true
+          id: 6,
+          title: "Mars Exploration",
+          url: "https://www.youtube.com/watch?v=P6MOnehCOUw",
+          completed: false,
+          description: "Rovers, missions, and future human exploration of Mars"
+        },
+        {
+          id: 7,
+          title: "Private Space Companies",
+          url: "https://www.youtube.com/watch?v=zqE-ultsWt0",
+          completed: false,
+          description: "SpaceX, Blue Origin, and the commercial space revolution"
+        },
+        {
+          id: 8,
+          title: "Future of Space Exploration",
+          url: "https://www.youtube.com/watch?v=t705r8ICkRw",
+          completed: false,
+          description: "What's next for humanity in space?"
         }
       ]
     },
     {
-      id: 'rocket-science',
-      title: 'Rocket Science & Propulsion',
-      description: 'Master the physics of space travel',
-      icon: Rocket,
-      color: 'blue',
-      progress: 20,
-      lessons: [
+      id: 2,
+      title: "Solar System Deep Dive",
+      description: "Explore planets, moons, and other celestial bodies in our solar system.",
+      category: "astronomy",
+      level: "Intermediate",
+      icon: <Globe className="h-6 w-6" />,
+      progress: 0,
+      videos: [
         {
-          id: 'rs-1',
-          title: 'Rocket Principles',
-          description: 'Newton\'s laws and basic rocket physics',
-          videoUrl: 'https://www.youtube.com/embed/DKtVpvzUF1Y',
-          thumbnailUrl: 'https://img.youtube.com/vi/DKtVpvzUF1Y/maxresdefault.jpg',
-          difficulty: 'Beginner'
+          id: 1,
+          title: "Our Solar System Overview",
+          url: "https://www.youtube.com/watch?v=libKVRa01L8",
+          completed: false,
+          description: "Formation and structure of our solar system"
         },
         {
-          id: 'rs-2',
-          title: 'Chemical Propulsion',
-          description: 'How chemical rockets work and fuel types',
-          videoUrl: 'https://www.youtube.com/embed/h075YGecrcA',
-          thumbnailUrl: 'https://img.youtube.com/vi/h075YGecrcA/maxresdefault.jpg',
-          difficulty: 'Intermediate'
+          id: 2,
+          title: "The Sun - Our Star",
+          url: "https://www.youtube.com/watch?v=6tmbeLTHC_0",
+          completed: false,
+          description: "Understanding solar physics and solar activity"
         },
         {
-          id: 'rs-3',
-          title: 'Orbital Mechanics',
-          description: 'Understanding orbits, gravity, and trajectories',
-          videoUrl: 'https://www.youtube.com/embed/Am7eHyJkjyg',
-          thumbnailUrl: 'https://img.youtube.com/vi/Am7eHyJkjyg/maxresdefault.jpg',
-          difficulty: 'Intermediate'
+          id: 3,
+          title: "Mercury and Venus",
+          url: "https://www.youtube.com/watch?v=0rHUDWjR5gg",
+          completed: false,
+          description: "The innermost planets and their extreme conditions"
         },
         {
-          id: 'rs-4',
-          title: 'SpaceX and Modern Rockets',
-          description: 'Revolutionary reusable rocket technology',
-          videoUrl: 'https://www.youtube.com/embed/A0FZIwabctw',
-          thumbnailUrl: 'https://img.youtube.com/vi/A0FZIwabctw/maxresdefault.jpg',
-          difficulty: 'Advanced'
+          id: 4,
+          title: "Earth - Our Blue Planet",
+          url: "https://www.youtube.com/watch?v=HCDVN7DCzYE",
+          completed: false,
+          description: "What makes Earth unique and habitable"
         },
         {
-          id: 'rs-5',
-          title: 'Future Propulsion Technologies',
-          description: 'Ion drives, nuclear propulsion, and beyond',
-          videoUrl: 'https://www.youtube.com/embed/EzZGPCyrpSU',
-          thumbnailUrl: 'https://img.youtube.com/vi/EzZGPCyrpSU/maxresdefault.jpg',
-          difficulty: 'Advanced',
-          locked: true
+          id: 5,
+          title: "Mars - The Red Planet",
+          url: "https://www.youtube.com/watch?v=D8pnmwOXhoY",
+          completed: false,
+          description: "Geology, atmosphere, and potential for life on Mars"
+        },
+        {
+          id: 6,
+          title: "Jupiter - King of Planets",
+          url: "https://www.youtube.com/watch?v=PtkqwslbLY8",
+          completed: false,
+          description: "The gas giant and its fascinating moons"
+        },
+        {
+          id: 7,
+          title: "Saturn and Its Rings",
+          url: "https://www.youtube.com/watch?v=epZdZaEQhS0",
+          completed: false,
+          description: "The ringed planet and moon Titan"
+        },
+        {
+          id: 8,
+          title: "Uranus and Neptune",
+          url: "https://www.youtube.com/watch?v=NStn7zZKXfE",
+          completed: false,
+          description: "The ice giants of the outer solar system"
+        },
+        {
+          id: 9,
+          title: "Asteroids and Comets",
+          url: "https://www.youtube.com/watch?v=S_d-gs0WoUw",
+          completed: false,
+          description: "Small bodies and their role in solar system formation"
+        },
+        {
+          id: 10,
+          title: "Moons of the Solar System",
+          url: "https://www.youtube.com/watch?v=BNdLR6mI1a0",
+          completed: false,
+          description: "Fascinating satellites and their unique characteristics"
         }
       ]
     },
     {
-      id: 'planetary-science',
-      title: 'Planetary Science',
-      description: 'Explore worlds in our solar system and beyond',
-      icon: Globe,
-      color: 'green',
-      progress: 60,
-      lessons: [
+      id: 3,
+      title: "Telescope Technology",
+      description: "Understanding how telescopes work and their role in space discoveries.",
+      category: "technology",
+      level: "Beginner",
+      icon: <Telescope className="h-6 w-6" />,
+      progress: 0,
+      videos: [
         {
-          id: 'ps-1',
-          title: 'Formation of Planets',
-          description: 'How planets form from stellar nebulae',
-          videoUrl: 'https://www.youtube.com/embed/ytHdkHb2nT4',
-          thumbnailUrl: 'https://img.youtube.com/vi/ytHdkHb2nT4/maxresdefault.jpg',
-          difficulty: 'Beginner'
+          id: 1,
+          title: "How Telescopes Work",
+          url: "https://www.youtube.com/watch?v=VB3UvkUVaDY",
+          completed: false,
+          description: "Basic principles of optical telescopes"
         },
         {
-          id: 'ps-3',
-          title: 'The Moons of Jupiter',
-          description: 'Europa, Io, Ganymede, and Callisto',
-          videoUrl: 'https://www.youtube.com/embed/h075YGecrcA',
-          thumbnailUrl: 'https://img.youtube.com/vi/h075YGecrcA/maxresdefault.jpg',
-          difficulty: 'Intermediate'
+          id: 2,
+          title: "Types of Telescopes",
+          url: "https://www.youtube.com/watch?v=rB7jUvpQlQg",
+          completed: false,
+          description: "Refractors, reflectors, and compound telescopes"
         },
         {
-          id: 'ps-4',
-          title: 'Titan and Saturn\'s Rings',
-          description: 'Exploring Saturn\'s mysterious moon and ring system',
-          videoUrl: 'https://www.youtube.com/embed/jYt_Ki0E0_s',
-          thumbnailUrl: 'https://img.youtube.com/vi/jYt_Ki0E0_s/maxresdefault.jpg',
-          difficulty: 'Advanced'
+          id: 3,
+          title: "Space Telescopes vs Ground-based",
+          url: "https://www.youtube.com/watch?v=GfKUzPJwB4Q",
+          completed: false,
+          description: "Advantages and limitations of different telescope locations"
+        },
+        {
+          id: 4,
+          title: "Hubble Space Telescope",
+          url: "https://www.youtube.com/watch?v=tf7IEVTDjng",
+          completed: false,
+          description: "The most famous space telescope and its discoveries"
+        },
+        {
+          id: 5,
+          title: "James Webb Space Telescope",
+          url: "https://www.youtube.com/watch?v=4P8fKd0IVOs",
+          completed: false,
+          description: "The next generation infrared space observatory"
+        },
+        {
+          id: 6,
+          title: "Radio Telescopes and SETI",
+          url: "https://www.youtube.com/watch?v=EF8GhC-T_Mo",
+          completed: false,
+          description: "Listening to the cosmos and searching for alien signals"
         }
       ]
     },
     {
-      id: 'space-physics',
-      title: 'Space Physics',
-      description: 'Understanding the fundamental physics of space',
-      icon: Atom,
-      color: 'red',
-      progress: 10,
-      lessons: [
+      id: 4,
+      title: "Physics of Space Travel",
+      description: "The science behind rockets, orbits, and interplanetary travel.",
+      category: "physics",
+      level: "Advanced",
+      icon: <Atom className="h-6 w-6" />,
+      progress: 0,
+      videos: [
         {
-          id: 'sp-1',
-          title: 'Einstein\'s Relativity',
-          description: 'Special and general relativity explained',
-          videoUrl: 'https://www.youtube.com/embed/Bg_tJvCA8zw',
-          thumbnailUrl: 'https://img.youtube.com/vi/Bg_tJvCA8zw/maxresdefault.jpg',
-          difficulty: 'Advanced'
+          id: 1,
+          title: "Newton's Laws in Space",
+          url: "https://www.youtube.com/watch?v=NjSISL_GKkY",
+          completed: false,
+          description: "How Newton's laws govern motion in space"
         },
         {
-          id: 'sp-2',
-          title: 'Quantum Mechanics in Space',
-          description: 'How quantum physics applies to cosmology',
-          videoUrl: 'https://www.youtube.com/embed/7u_UQG1La1o',
-          thumbnailUrl: 'https://img.youtube.com/vi/7u_UQG1La1o/maxresdefault.jpg',
-          difficulty: 'Advanced'
+          id: 2,
+          title: "Rocket Propulsion Basics",
+          url: "https://www.youtube.com/watch?v=RMpzdHzJBzw",
+          completed: false,
+          description: "The physics behind rocket engines"
         },
         {
-          id: 'sp-3',
-          title: 'Particle Physics and Cosmic Rays',
-          description: 'High-energy particles from space',
-          videoUrl: 'https://www.youtube.com/embed/AwhBz3K7k_8',
-          thumbnailUrl: 'https://img.youtube.com/vi/AwhBz3K7k_8/maxresdefault.jpg',
-          difficulty: 'Advanced',
-          locked: true
+          id: 3,
+          title: "Orbital Mechanics",
+          url: "https://www.youtube.com/watch?v=Am2V5zKpV_8",
+          completed: false,
+          description: "Understanding orbits, velocity, and gravitational forces"
+        },
+        {
+          id: 4,
+          title: "Escape Velocity",
+          url: "https://www.youtube.com/watch?v=ZOKHVk3mhrY",
+          completed: false,
+          description: "The speed needed to break free from gravity"
+        },
+        {
+          id: 5,
+          title: "Gravity Assists",
+          url: "https://www.youtube.com/watch?v=16jr7WWGSxo",
+          completed: false,
+          description: "Using planetary gravity to accelerate spacecraft"
+        },
+        {
+          id: 6,
+          title: "Ion Propulsion",
+          url: "https://www.youtube.com/watch?v=rSNaZ5wGTMw",
+          completed: false,
+          description: "Advanced propulsion for deep space missions"
         }
       ]
     }
   ];
 
-  const selectedCourseData = courses.find(course => course.id === selectedCourse) || courses[0];
+  const achievements = [
+    { name: "First Steps", description: "Complete your first video", icon: "🚀" },
+    { name: "Stellar Student", description: "Complete 10 videos", icon: "⭐" },
+    { name: "Space Expert", description: "Complete all courses", icon: "🎓" },
+    { name: "Binge Watcher", description: "Watch 5 videos in one session", icon: "🏆" }
+  ];
 
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty) {
-      case 'Beginner': return 'bg-green-500';
-      case 'Intermediate': return 'bg-yellow-500';
-      case 'Advanced': return 'bg-red-500';
-      default: return 'bg-gray-500';
+  const filteredCourses = activeCategory === "all" 
+    ? courses 
+    : courses.filter(course => course.category === activeCategory);
+
+  const getLevelColor = (level: string) => {
+    switch (level) {
+      case "Beginner": return "bg-green-500/20 text-green-400";
+      case "Intermediate": return "bg-yellow-500/20 text-yellow-400";
+      case "Advanced": return "bg-red-500/20 text-red-400";
+      default: return "bg-gray-500/20 text-gray-400";
     }
   };
 
-  const markVideoAsWatched = (videoId: string) => {
-    setWatchedVideos(prev => new Set([...prev, videoId]));
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-white mb-4 flex items-center justify-center">
-            <GraduationCap className="h-12 w-12 mr-4 text-blue-400" />
-            Space Education Center
-          </h1>
-          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Master the wonders of space science through comprehensive video courses 
-            designed by NASA experts and leading astronomers
-          </p>
-        </div>
-
-        <Tabs value={selectedCourse} onValueChange={setSelectedCourse} className="w-full">
-          {/* Course Selection */}
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 mb-8">
-            {courses.map((course) => (
-              <TabsTrigger 
-                key={course.id} 
-                value={course.id}
-                className="flex flex-col items-center p-4 h-auto"
-              >
-                <course.icon className={`h-6 w-6 mb-2 text-${course.color}-400`} />
-                <span className="text-sm font-medium">{course.title}</span>
-              </TabsTrigger>
-            ))}
-          </TabsList>
-
-          {/* Course Content */}
-          {courses.map((course) => (
-            <TabsContent key={course.id} value={course.id} className="space-y-6">
-              {/* Course Overview */}
-              <Card className="bg-white/10 backdrop-blur-md border-white/20">
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <div className={`p-3 rounded-lg bg-${course.color}-500/20`}>
-                        <course.icon className={`h-8 w-8 text-${course.color}-400`} />
-                      </div>
-                      <div>
-                        <CardTitle className="text-white text-2xl">{course.title}</CardTitle>
-                        <CardDescription className="text-gray-300 text-lg">
-                          {course.description}
-                        </CardDescription>
-                      </div>
+  const CourseVideos = ({ course }: { course: any }) => (
+    <Card className="bg-white/10 backdrop-blur-md border-white/20 mt-4">
+      <CardHeader>
+        <CardTitle className="text-white flex items-center">
+          <PlayCircle className="h-5 w-5 mr-2" />
+          Course Videos - {course.title}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-3">
+          {course.videos.map((video: any, index: number) => (
+            <div key={video.id} className="flex items-center justify-between p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center justify-center w-10 h-10 bg-blue-500/20 rounded-full text-blue-400 text-sm font-medium">
+                  {index + 1}
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-white font-medium">{video.title}</h4>
+                  <p className="text-gray-400 text-sm">{video.description}</p>
+                  {video.completed && (
+                    <div className="flex items-center space-x-1 mt-2">
+                      <CheckCircle className="h-4 w-4 text-green-400" />
+                      <span className="text-green-400 text-sm">Completed</span>
                     </div>
-                    <div className="text-right">
-                      <p className="text-white font-semibold">{course.lessons.length} lessons</p>
-                      <p className="text-gray-400 text-sm">Video Course</p>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div>
-                      <div className="flex justify-between text-sm mb-2">
-                        <span className="text-gray-300">Course Progress</span>
-                        <span className="text-white">{course.progress}% Complete</span>
-                      </div>
-                      <Progress value={course.progress} className="w-full" />
-                    </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                      <div className="flex items-center space-x-2">
-                        <BookOpen className="h-4 w-4 text-green-400" />
-                        <span className="text-gray-300">Lessons:</span>
-                        <span className="text-white font-semibold">{course.lessons.length}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Star className="h-4 w-4 text-yellow-400" />
-                        <span className="text-gray-300">Difficulty:</span>
-                        <span className="text-white font-semibold">Mixed Levels</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Video className="h-4 w-4 text-purple-400" />
-                        <span className="text-gray-300">Format:</span>
-                        <span className="text-white font-semibold">HD Videos</span>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Video Lessons */}
-              <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-white flex items-center">
-                  <Video className="h-6 w-6 mr-3 text-purple-400" />
-                  Video Lessons
-                </h3>
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {course.lessons.map((lesson, index) => (
-                    <Card 
-                      key={lesson.id} 
-                      className={`bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 ${
-                        lesson.locked ? 'opacity-60' : 'hover:scale-105'
-                      }`}
-                    >
-                      <CardHeader className="pb-2">
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <div className="flex items-center space-x-2 mb-2">
-                              <span className="text-gray-400 text-sm">Lesson {index + 1}</span>
-                              <Badge className={getDifficultyColor(lesson.difficulty)}>
-                                {lesson.difficulty}
-                              </Badge>
-                              {watchedVideos.has(lesson.id) && (
-                                <CheckCircle className="h-4 w-4 text-green-400" />
-                              )}
-                              {lesson.locked && (
-                                <Lock className="h-4 w-4 text-gray-400" />
-                              )}
-                            </div>
-                            <CardTitle className="text-white text-lg mb-2">
-                              {lesson.title}
-                            </CardTitle>
-                            <CardDescription className="text-gray-300">
-                              {lesson.description}
-                            </CardDescription>
-                          </div>
-                        </div>
-                      </CardHeader>
-                      
-                      <CardContent className="pt-2">
-                        {/* Video Thumbnail */}
-                        <div className="relative mb-4 rounded-lg overflow-hidden">
-                          <img 
-                            src={lesson.thumbnailUrl} 
-                            alt={lesson.title}
-                            className="w-full h-40 object-cover"
-                          />
-                          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                            {lesson.locked ? (
-                              <Lock className="h-12 w-12 text-gray-400" />
-                            ) : (
-                              <Play className="h-12 w-12 text-white" />
-                            )}
-                          </div>
-                        </div>
-
-                        <div className="flex items-center justify-between">
-                          {lesson.locked ? (
-                            <Button variant="outline" disabled className="opacity-50 w-full">
-                              <Lock className="h-4 w-4 mr-2" />
-                              Locked
-                            </Button>
-                          ) : (
-                            <Button 
-                              onClick={() => markVideoAsWatched(lesson.id)}
-                              className={`w-full ${
-                                watchedVideos.has(lesson.id) 
-                                  ? 'bg-green-600 hover:bg-green-700' 
-                                  : 'bg-blue-600 hover:bg-blue-700'
-                              }`}
-                            >
-                              {watchedVideos.has(lesson.id) ? (
-                                <>
-                                  <CheckCircle className="h-4 w-4 mr-2" />
-                                  Completed
-                                </>
-                              ) : (
-                                <>
-                                  <Play className="h-4 w-4 mr-2" />
-                                  Watch Now
-                                </>
-                              )}
-                            </Button>
-                          )}
-                        </div>
-
-                        {/* Video Player (shown when watching) */}
-                        {watchedVideos.has(lesson.id) && (
-                          <div className="mt-4">
-                            <iframe
-                              width="100%"
-                              height="250"
-                              src={lesson.videoUrl}
-                              title={lesson.title}
-                              frameBorder="0"
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                              allowFullScreen
-                              className="rounded-lg"
-                            ></iframe>
-                          </div>
-                        )}
-                      </CardContent>
-                    </Card>
-                  ))}
+                  )}
                 </div>
               </div>
-
-              {/* Course Statistics */}
-              <Card className="bg-white/5 backdrop-blur-md border-white/10">
-                <CardHeader>
-                  <CardTitle className="text-white">Learning Statistics</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <div className="text-center">
-                      <p className="text-3xl font-bold text-blue-400">
-                        {course.lessons.filter(l => !l.locked).length}
-                      </p>
-                      <p className="text-gray-300 text-sm">Available Lessons</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-3xl font-bold text-green-400">
-                        {Array.from(watchedVideos).filter(id => 
-                          course.lessons.some(lesson => lesson.id === id)
-                        ).length}
-                      </p>
-                      <p className="text-gray-300 text-sm">Completed</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-3xl font-bold text-yellow-400">
-                        {course.lessons.length}
-                      </p>
-                      <p className="text-gray-300 text-sm">Total Lessons</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-3xl font-bold text-purple-400">
-                        {course.progress}%
-                      </p>
-                      <p className="text-gray-300 text-sm">Progress</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
+              <Button
+                size="sm"
+                onClick={() => window.open(video.url, '_blank')}
+                className="bg-blue-600 hover:bg-blue-700 flex items-center space-x-2"
+              >
+                <ExternalLink className="h-4 w-4" />
+                <span>Watch</span>
+              </Button>
+            </div>
           ))}
+        </div>
+      </CardContent>
+    </Card>
+  );
+
+  return (
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Animated Background */}
+      <AnimatedBackground />
+      
+      {/* Content Container */}
+      <div className="relative z-10 container mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold text-white mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            Space Education Hub
+          </h1>
+          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+            Explore the wonders of space through interactive video courses and engaging educational content
+          </p>
+          
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+            <div className="bg-white/10 backdrop-blur-md rounded-lg p-4">
+              <div className="text-2xl font-bold text-white">30+</div>
+              <div className="text-sm text-gray-300">Video Lessons</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-md rounded-lg p-4">
+              <div className="text-2xl font-bold text-white">10K+</div>
+              <div className="text-sm text-gray-300">Students</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-md rounded-lg p-4">
+              <div className="text-2xl font-bold text-white">95%</div>
+              <div className="text-sm text-gray-300">Completion Rate</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-md rounded-lg p-4">
+              <div className="text-2xl font-bold text-white">24/7</div>
+              <div className="text-sm text-gray-300">Access</div>
+            </div>
+          </div>
+        </div>
+
+        <Tabs defaultValue="courses" className="space-y-8">
+          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 bg-white/10 backdrop-blur-md">
+            <TabsTrigger value="courses" className="data-[state=active]:bg-blue-500/20">Video Courses</TabsTrigger>
+            <TabsTrigger value="achievements" className="data-[state=active]:bg-blue-500/20">Achievements</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="courses" className="space-y-8">
+            {/* Category Filter */}
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+              {["all", "basics", "astronomy", "technology", "physics"].map((category) => (
+                <Button
+                  key={category}
+                  variant={activeCategory === category ? "default" : "outline"}
+                  onClick={() => setActiveCategory(category)}
+                  className={activeCategory === category 
+                    ? "bg-blue-600 hover:bg-blue-700" 
+                    : "border-white/20 text-white hover:bg-white/10 backdrop-blur-sm"
+                  }
+                >
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </Button>
+              ))}
+            </div>
+
+            {/* Courses Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {filteredCourses.map((course) => (
+                <div key={course.id} className="space-y-4">
+                  <Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300">
+                    <CardHeader>
+                      <div className="flex items-center space-x-3 mb-2">
+                        <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center text-blue-400">
+                          {course.icon}
+                        </div>
+                        <Badge className={getLevelColor(course.level)}>
+                          {course.level}
+                        </Badge>
+                      </div>
+                      <CardTitle className="text-white text-lg">{course.title}</CardTitle>
+                      <CardDescription className="text-gray-300">
+                        {course.description}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div className="flex justify-between text-sm text-gray-400">
+                          <span className="flex items-center">
+                            <PlayCircle className="h-4 w-4 mr-1" />
+                            {course.videos.length} videos
+                          </span>
+                        </div>
+                        
+                        <div className="w-full bg-gray-700 rounded-full h-2">
+                          <div 
+                            className="bg-blue-500 h-2 rounded-full" 
+                            style={{ width: `${course.progress}%` }}
+                          ></div>
+                        </div>
+                        
+                        <Button 
+                          className="w-full bg-blue-600 hover:bg-blue-700"
+                          onClick={() => setSelectedCourse(selectedCourse === course.id ? null : course.id)}
+                        >
+                          <BookOpen className="h-4 w-4 mr-2" />
+                          {selectedCourse === course.id ? "Hide Videos" : "View All Videos"}
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                  
+                  {/* Show course videos when selected */}
+                  {selectedCourse === course.id && (
+                    <CourseVideos course={course} />
+                  )}
+                </div>
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="achievements" className="space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {achievements.map((achievement, index) => (
+                <Card key={index} className="bg-white/10 backdrop-blur-md border-white/20">
+                  <CardContent className="p-6">
+                    <div className="flex items-center space-x-4">
+                      <div className="text-3xl">{achievement.icon}</div>
+                      <div>
+                        <h3 className="text-white font-semibold">{achievement.name}</h3>
+                        <p className="text-gray-300 text-sm">{achievement.description}</p>
+                        <Badge variant="outline" className="mt-2 text-gray-400 border-gray-500">
+                          Locked
+                        </Badge>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
         </Tabs>
 
-        {/* Quick Access Links */}
-        <div className="mt-12">
-          <Separator className="bg-white/20 mb-8" />
-          <h3 className="text-2xl font-bold text-white text-center mb-6">Explore More</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <Button asChild variant="outline" className="h-20 flex-col border-white/20 text-white hover:bg-white/10">
-              <Link to="/quiz">
-                <GraduationCap className="h-6 w-6 mb-2" />
-                Take Quiz
-              </Link>
-            </Button>
-            <Button asChild variant="outline" className="h-20 flex-col border-white/20 text-white hover:bg-white/10">
-              <Link to="/solar-system">
-                <Globe className="h-6 w-6 mb-2" />
-                3D Solar System
-              </Link>
-            </Button>
-            <Button asChild variant="outline" className="h-20 flex-col border-white/20 text-white hover:bg-white/10">
-              <Link to="/real-time-data">
-                <Telescope className="h-6 w-6 mb-2" />
-                Live Space Data
-              </Link>
-            </Button>
+        {/* Featured Section */}
+        <div className="mt-16">
+          <h2 className="text-3xl font-bold text-white text-center mb-8">Why Choose Video Learning?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-md border-white/20">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-blue-500/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <PlayCircle className="h-8 w-8 text-blue-400" />
+                </div>
+                <h3 className="text-white font-semibold mb-2">Visual Learning</h3>
+                <p className="text-gray-300 text-sm">See complex space concepts explained through stunning visuals and animations</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-to-br from-green-500/20 to-blue-500/20 backdrop-blur-md border-white/20">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-green-500/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <PlayCircle className="h-8 w-8 text-green-400" />
+                </div>
+                <h3 className="text-white font-semibold mb-2">Learn at Your Pace</h3>
+                <p className="text-gray-300 text-sm">Watch videos anytime, pause, rewind, and learn at your own speed</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-md border-white/20">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-yellow-500/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Award className="h-8 w-8 text-yellow-400" />
+                </div>
+                <h3 className="text-white font-semibold mb-2">Expert Content</h3>
+                <p className="text-gray-300 text-sm">Curated videos from NASA, space agencies, and leading educators</p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
