@@ -79,6 +79,7 @@ const App = () => (
                   <Route path="/education/planetary-science" element={<PlanetaryScience />} />
                   <Route path="/education/astronomy" element={<AstronomyFundamentals />} />
                   <Route path="/education/space-history" element={<SpaceHistory />} />
+                  <Route path="/space-weather-story" element={<SpaceWeather />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
