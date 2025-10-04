@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
-import { ChevronLeft, ChevronRight, Home, RotateCcw, Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Home, RotateCcw, Play, Pause, Volume2, VolumeX, Camera, Wifi, MapPin, Phone, Car, Plane, Hospital, School, Coffee, Home as HomeIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -128,7 +128,11 @@ const SpaceWeatherStory: React.FC = () => {
       narration: "Maya discovered that our Sun is much more active and powerful than she ever imagined.",
       character: { name: "Maya", emotion: "amazed", location: "Coffee shop" },
       visualScene: "community",
-      educationalFocus: "Solar wind basics"
+      educationalFocus: "Solar wind basics",
+      interactiveElements: [
+        { type: 'hotspot', data: { title: 'Solar Wind', description: 'Charged particles from the Sun' } },
+        { type: 'quiz', data: { question: 'How far is the Sun from Earth?', answer: '93 million miles' } }
+      ]
     },
     {
       id: 13,
@@ -137,7 +141,11 @@ const SpaceWeatherStory: React.FC = () => {
       narration: "Maya learned that solar flares are like giant explosions on the Sun that can affect us here on Earth.",
       character: { name: "Maya", emotion: "amazed", location: "Coffee shop" },
       visualScene: "sun-flare",
-      educationalFocus: "Solar flares"
+      educationalFocus: "Solar flares",
+      interactiveElements: [
+        { type: 'comparison', data: { title: 'Solar Flare Energy', description: 'Billions of nuclear bombs worth of energy' } },
+        { type: 'hotspot', data: { title: 'Speed of Light', description: 'Radiation travels at 186,000 miles per second' } }
+      ]
     },
     {
       id: 14,
@@ -217,7 +225,11 @@ const SpaceWeatherStory: React.FC = () => {
       content: "That night, Maya sets up her camera. The space weather that disrupted her day also creates a beautiful aurora over Minneapolis - a rare sight this far south. She captures the perfect shot, understanding now that we truly live in space.",
       narration: "Maya's space weather adventure ended with a beautiful reminder that Earth travels through space, and space weather is just part of our cosmic journey.",
       character: { name: "Maya", emotion: "amazed", location: "Rooftop with camera" },
-      visualScene: "aurora"
+      visualScene: "aurora",
+      interactiveElements: [
+        { type: 'comparison', data: { title: 'Aurora Colors', description: 'Green, blue, purple lights from charged particles' } },
+        { type: 'hotspot', data: { title: 'Rare Event', description: 'Aurora visible this far south is unusual' } }
+      ]
     }
   ];
 
@@ -333,11 +345,27 @@ const SpaceWeatherStory: React.FC = () => {
                 </h2>
 
                 {/* Visual Scene Component */}
-                <div className="w-full h-80 mb-6 rounded-xl overflow-hidden border-2 border-white/20">
+                <div className="w-full h-80 mb-6 rounded-xl overflow-hidden border-2 border-white/20 relative group">
                   <VisualScene 
                     scene={currentSlideData.visualScene}
                     emotion={currentSlideData.character.emotion}
                     slideId={currentSlideData.id}
+                  />
+                  
+                  {/* Interactive Hotspots */}
+                  {currentSlideData.interactiveElements?.map((element, index) => (
+                    <InteractiveHotspot
+                      key={index}
+                      type={element.type}
+                      data={element.data}
+                      position={{ x: 20 + index * 30, y: 20 + index * 20 }}
+                    />
+                  ))}
+                  
+                  {/* Particle Effects Overlay */}
+                  <ParticleField 
+                    intensity={currentSlideData.character.emotion === 'amazed' ? 'high' : 'medium'}
+                    type={currentSlideData.visualScene}
                   />
                 </div>
 
@@ -413,7 +441,107 @@ const speakText = (text: string) => {
   }
 };
 
-// Visual Scene Component
+// Interactive Hotspot Component
+interface InteractiveHotspotProps {
+  type: 'hotspot' | 'quiz' | 'comparison';
+  data: any;
+  position: { x: number; y: number };
+}
+
+const InteractiveHotspot: React.FC<InteractiveHotspotProps> = ({ type, data, position }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const getIcon = () => {
+    switch (type) {
+      case 'hotspot': return <MapPin className="w-4 h-4" />;
+      case 'quiz': return <Volume2 className="w-4 h-4" />;
+      case 'comparison': return <Camera className="w-4 h-4" />;
+      default: return <MapPin className="w-4 h-4" />;
+    }
+  };
+
+  return (
+    <motion.div
+      className="absolute cursor-pointer z-10"
+      style={{ left: position.x, top: position.y }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      whileHover={{ scale: 1.2 }}
+      whileTap={{ scale: 0.9 }}
+    >
+      <motion.div
+        className="w-8 h-8 bg-blue-500/80 rounded-full flex items-center justify-center text-white shadow-lg"
+        animate={{
+          scale: isHovered ? 1.2 : 1,
+          boxShadow: isHovered 
+            ? '0 0 20px rgba(59, 130, 246, 0.8)' 
+            : '0 0 10px rgba(59, 130, 246, 0.4)'
+        }}
+        transition={{ duration: 0.2 }}
+      >
+        {getIcon()}
+      </motion.div>
+      
+      {isHovered && (
+        <motion.div
+          className="absolute top-10 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+        >
+          Click to learn more
+        </motion.div>
+      )}
+    </motion.div>
+  );
+};
+
+// Particle Field Component
+interface ParticleFieldProps {
+  intensity: 'low' | 'medium' | 'high';
+  type: string;
+}
+
+const ParticleField: React.FC<ParticleFieldProps> = ({ intensity, type }) => {
+  const particleCount = intensity === 'high' ? 30 : intensity === 'medium' ? 20 : 10;
+  
+  const getParticleColor = () => {
+    switch (type) {
+      case 'aurora': return 'text-green-400';
+      case 'sun-flare': return 'text-yellow-400';
+      case 'earth-magnetic': return 'text-blue-400';
+      default: return 'text-white';
+    }
+  };
+
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {[...Array(particleCount)].map((_, i) => (
+        <motion.div
+          key={i}
+          className={`absolute w-1 h-1 ${getParticleColor()} rounded-full`}
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`
+          }}
+          animate={{
+            x: [0, (Math.random() - 0.5) * 100],
+            y: [0, (Math.random() - 0.5) * 100],
+            opacity: [0, 1, 0],
+            scale: [0.5, 1, 0.5]
+          }}
+          transition={{
+            duration: 3 + Math.random() * 2,
+            repeat: Infinity,
+            delay: Math.random() * 3
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+// Visual Scene Component with Rich Multimedia
 interface VisualSceneProps {
   scene: 'morning-routine' | 'driving' | 'city-view' | 'aurora' | 'phone-glitch' | 
          'gps-error' | 'sun-flare' | 'earth-magnetic' | 'community' | 'resolution';
@@ -422,28 +550,445 @@ interface VisualSceneProps {
 }
 
 const VisualScene: React.FC<VisualSceneProps> = ({ scene, emotion, slideId }) => {
-  // Mapping scenes to background colors/gradients
-  const sceneBackgrounds: Record<string, string> = {
-    'morning-routine': 'bg-gradient-to-r from-amber-200 to-orange-300',
-    'driving': 'bg-gradient-to-r from-slate-400 to-slate-600',
-    'city-view': 'bg-gradient-to-r from-gray-700 to-gray-900',
-    'aurora': 'bg-gradient-to-r from-green-400 to-purple-600',
-    'phone-glitch': 'bg-gradient-to-r from-gray-800 to-red-900',
-    'gps-error': 'bg-gradient-to-r from-red-400 to-red-600',
-    'sun-flare': 'bg-gradient-to-r from-yellow-300 to-red-500',
-    'earth-magnetic': 'bg-gradient-to-r from-blue-900 to-indigo-600',
-    'community': 'bg-gradient-to-r from-amber-500 to-blue-500',
-    'resolution': 'bg-gradient-to-r from-purple-400 to-indigo-300'
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
+  // Character emotion animations
+  const getCharacterAnimation = () => {
+    const baseAnimation = {
+      initial: { scale: 0.8, opacity: 0 },
+      animate: { scale: 1, opacity: 1 },
+      transition: { duration: 0.5 }
+    };
+
+    switch (emotion) {
+      case 'confused':
+        return {
+          ...baseAnimation,
+          animate: { ...baseAnimation.animate, rotate: [-2, 2, -2, 0] },
+          transition: { ...baseAnimation.transition, repeat: Infinity, repeatType: "reverse" as const, duration: 2 }
+        };
+      case 'worried':
+        return {
+          ...baseAnimation,
+          animate: { ...baseAnimation.animate, y: [0, -5, 0] },
+          transition: { ...baseAnimation.transition, repeat: Infinity, repeatType: "reverse" as const, duration: 1.5 }
+        };
+      case 'amazed':
+        return {
+          ...baseAnimation,
+          animate: { ...baseAnimation.animate, scale: [1, 1.1, 1] },
+          transition: { ...baseAnimation.transition, repeat: Infinity, repeatType: "reverse" as const, duration: 1 }
+        };
+      case 'excited':
+        return {
+          ...baseAnimation,
+          animate: { ...baseAnimation.animate, rotate: [0, 5, -5, 0] },
+          transition: { ...baseAnimation.transition, repeat: Infinity, repeatType: "reverse" as const, duration: 0.8 }
+        };
+      default:
+        return baseAnimation;
+    }
+  };
+
+  const renderSceneContent = () => {
+    switch (scene) {
+      case 'morning-routine':
+        return (
+          <div className="relative w-full h-full bg-gradient-to-br from-amber-100 via-orange-200 to-yellow-300">
+            {/* Background elements */}
+            <div className="absolute inset-0 overflow-hidden">
+              <motion.div
+                className="absolute top-4 right-4 w-16 h-16 bg-yellow-400 rounded-full"
+                animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              />
+              <motion.div
+                className="absolute bottom-4 left-4 w-8 h-8 bg-orange-400 rounded-full"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+            </div>
+            
+            {/* Character */}
+            <motion.div
+              className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+              {...getCharacterAnimation()}
+            >
+              <div className="w-20 h-20 bg-gradient-to-br from-pink-300 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                <HomeIcon className="w-8 h-8 text-white" />
+              </div>
+            </motion.div>
+
+            {/* Scene elements */}
+            <div className="absolute top-4 left-4 flex gap-2">
+              <motion.div
+                className="w-6 h-6 bg-blue-500 rounded"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <Phone className="w-full h-full text-white p-1" />
+              </motion.div>
+              <motion.div
+                className="w-6 h-6 bg-green-500 rounded"
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                <Coffee className="w-full h-full text-white p-1" />
+              </motion.div>
+            </div>
+
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+              <h3 className="text-2xl font-bold text-orange-800 mb-2">Morning Routine</h3>
+              <p className="text-orange-700">Starting the day with technology</p>
+            </div>
+          </div>
+        );
+
+      case 'driving':
+        return (
+          <div className="relative w-full h-full bg-gradient-to-br from-slate-300 via-gray-400 to-slate-600">
+            {/* Road lines */}
+            <div className="absolute top-1/2 left-0 w-full h-1 bg-yellow-400">
+              <motion.div
+                className="w-8 h-1 bg-white"
+                animate={{ x: ['-100%', '100%'] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+            </div>
+
+            {/* Character in car */}
+            <motion.div
+              className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+              {...getCharacterAnimation()}
+            >
+              <div className="w-24 h-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-lg flex items-center justify-center shadow-lg">
+                <Car className="w-8 h-8 text-white" />
+              </div>
+            </motion.div>
+
+            {/* Moving background elements */}
+            <motion.div
+              className="absolute top-1/4 right-0 w-4 h-4 bg-gray-500 rounded-full"
+              animate={{ x: ['100%', '-100%'] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            />
+            <motion.div
+              className="absolute top-1/3 right-0 w-6 h-6 bg-gray-600 rounded-full"
+              animate={{ x: ['100%', '-100%'] }}
+              transition={{ duration: 4, repeat: Infinity }}
+            />
+
+            <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 text-center">
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">On the Road</h3>
+              <p className="text-gray-700">GPS guiding the way</p>
+            </div>
+          </div>
+        );
+
+      case 'aurora':
+        return (
+          <div className="relative w-full h-full bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900">
+            {/* Aurora effect */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-green-400/30 via-blue-500/30 to-purple-600/30"
+              animate={{ 
+                background: [
+                  'linear-gradient(45deg, rgba(34, 197, 94, 0.3), rgba(59, 130, 246, 0.3), rgba(147, 51, 234, 0.3))',
+                  'linear-gradient(45deg, rgba(147, 51, 234, 0.3), rgba(34, 197, 94, 0.3), rgba(59, 130, 246, 0.3))',
+                  'linear-gradient(45deg, rgba(59, 130, 246, 0.3), rgba(147, 51, 234, 0.3), rgba(34, 197, 94, 0.3))'
+                ]
+              }}
+              transition={{ duration: 4, repeat: Infinity }}
+            />
+            
+            {/* Stars */}
+            {[...Array(20)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`
+                }}
+                animate={{ 
+                  opacity: [0, 1, 0],
+                  scale: [0.5, 1, 0.5]
+                }}
+                transition={{ 
+                  duration: 2 + Math.random() * 2,
+                  repeat: Infinity,
+                  delay: Math.random() * 2
+                }}
+              />
+            ))}
+
+            {/* Character with camera */}
+            <motion.div
+              className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+              {...getCharacterAnimation()}
+            >
+              <div className="w-20 h-20 bg-gradient-to-br from-pink-300 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                <Camera className="w-8 h-8 text-white" />
+              </div>
+            </motion.div>
+
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+              <h3 className="text-2xl font-bold text-white mb-2">Aurora Borealis</h3>
+              <p className="text-blue-200">Nature's light show from space weather</p>
+            </div>
+          </div>
+        );
+
+      case 'sun-flare':
+        return (
+          <div className="relative w-full h-full bg-gradient-to-br from-yellow-200 via-orange-400 to-red-600">
+            {/* Sun with solar flare */}
+            <motion.div
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-gradient-to-r from-yellow-300 to-orange-500 rounded-full"
+              animate={{ 
+                scale: [1, 1.1, 1],
+                boxShadow: [
+                  '0 0 20px rgba(255, 165, 0, 0.5)',
+                  '0 0 40px rgba(255, 100, 0, 0.8)',
+                  '0 0 20px rgba(255, 165, 0, 0.5)'
+                ]
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+            
+            {/* Solar flare particles */}
+            {[...Array(15)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-2 h-2 bg-yellow-300 rounded-full"
+                style={{
+                  left: '50%',
+                  top: '50%'
+                }}
+                animate={{
+                  x: [0, (Math.random() - 0.5) * 200],
+                  y: [0, (Math.random() - 0.5) * 200],
+                  opacity: [1, 0]
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  delay: Math.random() * 2
+                }}
+              />
+            ))}
+
+            <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 text-center">
+              <h3 className="text-2xl font-bold text-orange-800 mb-2">Solar Flare</h3>
+              <p className="text-orange-700">Massive explosion on the Sun</p>
+            </div>
+          </div>
+        );
+
+      case 'gps-error':
+        return (
+          <div className="relative w-full h-full bg-gradient-to-br from-red-200 via-red-400 to-red-600">
+            {/* Error symbols */}
+            <motion.div
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+              animate={{ rotate: [0, 10, -10, 0] }}
+              transition={{ duration: 1, repeat: Infinity }}
+            >
+              <div className="w-24 h-24 bg-red-500 rounded-lg flex items-center justify-center">
+                <MapPin className="w-12 h-12 text-white" />
+              </div>
+            </motion.div>
+
+            {/* Glitch effect */}
+            <motion.div
+              className="absolute inset-0 bg-red-500/20"
+              animate={{ opacity: [0, 0.5, 0] }}
+              transition={{ duration: 0.5, repeat: Infinity }}
+            />
+
+            <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 text-center">
+              <h3 className="text-2xl font-bold text-red-800 mb-2">GPS Error</h3>
+              <p className="text-red-700">Satellite signal disrupted</p>
+            </div>
+          </div>
+        );
+
+      case 'phone-glitch':
+        return (
+          <div className="relative w-full h-full bg-gradient-to-br from-gray-600 via-gray-800 to-black">
+            {/* Phone with glitch effect */}
+            <motion.div
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+              animate={{ 
+                x: [0, 2, -2, 0],
+                y: [0, 1, -1, 0]
+              }}
+              transition={{ duration: 0.1, repeat: Infinity }}
+            >
+              <div className="w-20 h-32 bg-gray-800 rounded-2xl flex items-center justify-center shadow-lg">
+                <Phone className="w-8 h-8 text-white" />
+              </div>
+            </motion.div>
+
+            {/* Static lines */}
+            {[...Array(10)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-full h-0.5 bg-white/30"
+                style={{ top: `${20 + i * 8}%` }}
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{ 
+                  duration: 0.2,
+                  repeat: Infinity,
+                  delay: Math.random() * 0.5
+                }}
+              />
+            ))}
+
+            <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 text-center">
+              <h3 className="text-2xl font-bold text-white mb-2">Phone Glitch</h3>
+              <p className="text-gray-300">Communication disrupted</p>
+            </div>
+          </div>
+        );
+
+      case 'community':
+        return (
+          <div className="relative w-full h-full bg-gradient-to-br from-amber-200 via-orange-300 to-blue-400">
+            {/* Building silhouettes */}
+            <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-gray-800 to-gray-600">
+              {[...Array(5)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute bottom-0 bg-gray-700"
+                  style={{
+                    left: `${i * 20}%`,
+                    width: '15%',
+                    height: `${60 + Math.random() * 40}%`
+                  }}
+                  animate={{ opacity: [0.7, 1, 0.7] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
+                />
+              ))}
+            </div>
+
+            {/* Character */}
+            <motion.div
+              className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+              {...getCharacterAnimation()}
+            >
+              <div className="w-20 h-20 bg-gradient-to-br from-pink-300 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                <Wifi className="w-8 h-8 text-white" />
+              </div>
+            </motion.div>
+
+            <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 text-center">
+              <h3 className="text-2xl font-bold text-orange-800 mb-2">Community Impact</h3>
+              <p className="text-orange-700">Everyone affected by space weather</p>
+            </div>
+          </div>
+        );
+
+      case 'earth-magnetic':
+        return (
+          <div className="relative w-full h-full bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900">
+            {/* Earth */}
+            <motion.div
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 10, repeat: Infinity }}
+            />
+            
+            {/* Magnetic field lines */}
+            {[...Array(8)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-32 h-32 border-2 border-blue-400/50 rounded-full"
+                style={{
+                  left: '50%',
+                  top: '50%',
+                  transform: 'translate(-50%, -50%)'
+                }}
+                animate={{ 
+                  scale: [0.5, 1.5, 0.5],
+                  opacity: [0.3, 0.8, 0.3]
+                }}
+                transition={{ 
+                  duration: 3,
+                  repeat: Infinity,
+                  delay: i * 0.3
+                }}
+              />
+            ))}
+
+            <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 text-center">
+              <h3 className="text-2xl font-bold text-white mb-2">Earth's Magnetic Field</h3>
+              <p className="text-blue-200">Our protective shield</p>
+            </div>
+          </div>
+        );
+
+      case 'resolution':
+        return (
+          <div className="relative w-full h-full bg-gradient-to-br from-purple-300 via-indigo-400 to-blue-500">
+            {/* Success elements */}
+            <motion.div
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <div className="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-lg">
+                <HomeIcon className="w-12 h-12 text-white" />
+              </div>
+            </motion.div>
+
+            {/* Floating particles */}
+            {[...Array(12)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-2 h-2 bg-white rounded-full"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`
+                }}
+                animate={{ 
+                  y: [0, -20, 0],
+                  opacity: [0.5, 1, 0.5]
+                }}
+                transition={{ 
+                  duration: 2 + Math.random(),
+                  repeat: Infinity,
+                  delay: Math.random() * 2
+                }}
+              />
+            ))}
+
+            <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 text-center">
+              <h3 className="text-2xl font-bold text-purple-800 mb-2">Resolution</h3>
+              <p className="text-purple-700">Understanding space weather</p>
+            </div>
+          </div>
+        );
+
+      default:
+        return (
+          <div className="relative w-full h-full bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center">
+            <div className="text-center">
+              <h3 className="text-2xl font-bold text-white mb-2">Scene: {scene}</h3>
+              <p className="text-white">Maya's emotion: {emotion}</p>
+            </div>
+          </div>
+        );
+    }
   };
 
   return (
-    <div className={`w-full h-full flex items-center justify-center ${sceneBackgrounds[scene] || 'bg-gray-700'}`}>
-      <div className="text-center">
-        <h3 className="text-xl font-bold text-white mb-2">Scene: {scene}</h3>
-        <div className="bg-black/30 px-4 py-2 rounded-full inline-block">
-          <p className="text-white">Maya's emotion: {emotion}</p>
-        </div>
-        <p className="text-sm text-white/80 mt-2">Slide ID: {slideId}</p>
+    <div className="relative w-full h-full overflow-hidden rounded-xl">
+      {renderSceneContent()}
+      
+      {/* Slide indicator */}
+      <div className="absolute top-4 right-4 bg-black/50 px-3 py-1 rounded-full">
+        <span className="text-white text-sm font-semibold">#{slideId}</span>
       </div>
     </div>
   );
