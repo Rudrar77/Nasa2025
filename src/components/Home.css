@@ -1,0 +1,161 @@
+/* ...existing styles... */
+
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 40px;
+    align-items: start;
+    padding: 40px 0;
+}
+
+.real-time-panel {
+    position: sticky;
+    top: 20px;
+}
+
+.live-events-dashboard {
+    padding: 60px 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(25, 25, 112, 0.3));
+}
+
+.live-events-dashboard h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: white;
+}
+
+.live-events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.live-event-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.live-event-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.live-event-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.live-badge, .upcoming-badge, .active-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: white;
+}
+
+.live-badge {
+    background: #ff4444;
+    animation: pulse 2s infinite;
+}
+
+.upcoming-badge {
+    background: #ffaa44;
+}
+
+.active-badge {
+    background: #44ff44;
+}
+
+.live-event-card h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.3rem;
+    color: white;
+}
+
+.live-event-card p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.event-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.event-stats span {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Specific card styles */
+.launch-stream {
+    background: linear-gradient(135deg, rgba(255, 68, 68, 0.1), rgba(255, 68, 68, 0.05));
+}
+
+.spacewalk-coverage {
+    background: linear-gradient(135deg, rgba(255, 170, 68, 0.1), rgba(255, 170, 68, 0.05));
+}
+
+.planetary-alignment {
+    background: linear-gradient(135deg, rgba(68, 255, 68, 0.1), rgba(68, 255, 68, 0.05));
+}
+
+.meteor-shower {
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(138, 43, 226, 0.05));
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .real-time-panel {
+        position: relative;
+        top: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .live-events-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .live-events-dashboard h2 {
+        font-size: 2rem;
+    }
+    
+    .live-event-card {
+        padding: 20px;
+    }
+}

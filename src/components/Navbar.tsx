@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Rocket, Sun, Home as HomeIcon, Brain, Gamepad2, Settings } from "lucide-react";
+import { Rocket, Sun, Home as HomeIcon, Brain, Gamepad2, Settings, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SkipLink, AccessibleButton } from "./AccessibilityEnhancer";
 import { useTranslation } from "./MultiLanguageSupport";
@@ -49,6 +49,9 @@ const Navbar = () => {
             <NavItem to="/solar-flare">
               <span className="inline-flex items-center gap-2"><Gamepad2 className="h-4 w-4" /> {t('nav.solar_flare')}</span>
             </NavItem>
+            <NavItem to="/ai-chat">
+              <span className="inline-flex items-center gap-2"><Bot className="h-4 w-4" /> AI Guide</span>
+            </NavItem>
             <NavItem to="/about">
               {t('nav.about')}
             </NavItem>
@@ -81,5 +84,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-

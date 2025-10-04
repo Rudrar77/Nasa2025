@@ -18,7 +18,19 @@ import SolarFlareSimPage from "./pages/SolarFlareSimPage";
 import CMEImpactPage from "./pages/CMEImpactPage";
 import QuizPage from "./pages/QuizPage";
 import NotFound from "./pages/NotFound";
-
+import AiChatPage from "./AiChat";
+// Import will be added when RealTimeSpaceData component is created
+import RealTimeSpaceData from "./pages/RealTimeSpaceData";
+// 3D Space Exploration Components
+import SpacecraftAssembly from "./pages/SpacecraftAssembly";
+import PlanetExploration from "./pages/PlanetExploration";
+// Educational Components
+import Education from "./pages/Education";
+import SpacePhysics from "./pages/education/SpacePhysics";
+import RocketScience from "./pages/education/RocketScience";
+import PlanetaryScience from "./pages/education/PlanetaryScience";
+import AstronomyFundamentals from "./pages/education/AstronomyFundamentals";
+import SpaceHistory from "./pages/education/SpaceHistory";
 // Advanced Components
 import { OfflineProvider } from "./components/OfflineMode";
 import { GamificationProvider } from "./components/GamificationSystem";
@@ -55,6 +67,18 @@ const App = () => (
                   <Route path="/solar-flare" element={<SolarFlareSimPage />} />
                   <Route path="/cme-impact" element={<CMEImpactPage />} />
                   <Route path="/quiz" element={<QuizPage />} />
+                  <Route path="/ai-chat" element={<AiChatPage />} />
+                  <Route path="/real-time-data" element={<RealTimeSpaceData />} />
+                  {/* 3D Space Exploration Routes */}
+                  <Route path="/spacecraft-assembly" element={<SpacecraftAssembly />} />
+                  <Route path="/planet-exploration" element={<PlanetExploration />} />
+                  {/* Educational Routes */}
+                  <Route path="/education" element={<Education />} />
+                  <Route path="/education/space-physics" element={<SpacePhysics />} />
+                  <Route path="/education/rocket-science" element={<RocketScience />} />
+                  <Route path="/education/planetary-science" element={<PlanetaryScience />} />
+                  <Route path="/education/astronomy" element={<AstronomyFundamentals />} />
+                  <Route path="/education/space-history" element={<SpaceHistory />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
