@@ -400,6 +400,7 @@ const Home = () => {
               Solar System
             </Link>
           </Button>
+        
           
           <Button asChild variant="outline" className="h-20 flex-col border-white/20 text-white hover:bg-white/10">
             <Link to="/eclipses">
