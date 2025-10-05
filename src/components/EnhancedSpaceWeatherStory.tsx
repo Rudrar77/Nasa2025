@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
 import { Badge } from './ui/badge';
+import AnimatedBackground from './ui/animated-background';
 import { 
   Play, 
   Volume2, 
@@ -2253,8 +2254,11 @@ const EnhancedSpaceWeatherStory = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
+      {/* Animated Background */}
+      <AnimatedBackground />
+      
       {/* Dynamic Background */}
-      <div className={`absolute inset-0 ${currentChapterData.backgroundColor || 'bg-gradient-space'} transition-all duration-1000`}>
+      <div className={`absolute inset-0 transition-all duration-1000 opacity-20`}>
         <ParticleField 
           density={40} 
           color={currentChapter % 2 === 0 ? "hsl(45, 100%, 65%)" : "hsl(264, 83%, 70%)"} 

@@ -22,7 +22,8 @@ interface Conversation {
 }
 
 // OpenRouter API configuration
-const OPENROUTER_API_KEY = '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';
+// IMPORTANT: Storing API keys on the client-side is insecure. 
+const OPENROUTER_API_KEY = 'AIzaSyD_k54qYHS1tdyLheTL0kP2IsKCcY5aS3M';
 const YOUR_SITE_URL = 'https://nasa2025.space';
 const YOUR_SITE_NAME = 'NASA 2025 Space Explorer';
 

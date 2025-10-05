@@ -1,0 +1,544 @@
+{
+  "adventure_images": [
+    {
+      "slide_id": 1,
+      "title": "Welcome to Your Space Weather Adventure!",
+      "image_url": "https://sdo.gsfc.nasa.gov/assets/img/latest/latest_2048_0193.jpg",
+      "source": "NASA SDO",
+      "description": "Latest solar image from Solar Dynamics Observatory"
+    },
+    {
+      "slide_id": 2,
+      "title": "What is Space Weather?",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/space_weather_infographic.jpg",
+      "source": "NASA",
+      "description": "Space weather infographic showing solar wind and magnetic fields"
+    },
+    {
+      "slide_id": 3,
+      "title": "Why Study Space Weather?",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/satellite_space_weather.jpg",
+      "source": "NASA",
+      "description": "Satellite monitoring space weather effects"
+    },
+    {
+      "slide_id": 4,
+      "title": "Meet Our Sun - The Star of Our Solar System",
+      "image_url": "https://sdo.gsfc.nasa.gov/assets/img/latest/latest_2048_0171.jpg",
+      "source": "NASA SDO",
+      "description": "High-resolution image of the Sun from SDO"
+    },
+    {
+      "slide_id": 5,
+      "title": "The Sun's Incredible Heat",
+      "image_url": "https://sdo.gsfc.nasa.gov/assets/img/latest/latest_2048_0304.jpg",
+      "source": "NASA SDO",
+      "description": "Solar image showing extreme temperatures"
+    },
+    {
+      "slide_id": 6,
+      "title": "How the Sun Makes Energy",
+      "image_url": "https://sdo.gsfc.nasa.gov/assets/img/browse/2019/11/07/20191107_120015_4096_0131.jpg",
+      "source": "NASA SDO",
+      "description": "Solar fusion process visualization"
+    },
+    {
+      "slide_id": 7,
+      "title": "The Sun's Layers",
+      "image_url": "https://sdo.gsfc.nasa.gov/assets/img/browse/2020/06/21/20200621_193015_4096_0335.jpg",
+      "source": "NASA SDO",
+      "description": "Solar layers and structure"
+    },
+    {
+      "slide_id": 8,
+      "title": "The Sun and Earth's Distance",
+      "image_url": "https://solarsystem.nasa.gov/system/stellar_items/image_files/382_sun_earth_scale.jpg",
+      "source": "NASA Solar System",
+      "description": "Scale comparison of Sun and Earth"
+    },
+    {
+      "slide_id": 9,
+      "title": "Sunspots - Dark Spots on the Sun",
+      "image_url": "https://sdo.gsfc.nasa.gov/assets/img/latest/latest_1024_HMIIF.jpg",
+      "source": "NASA SDO",
+      "description": "Sunspots visible on solar surface"
+    },
+    {
+      "slide_id": 10,
+      "title": "Solar Wind - The Sun's Breath",
+      "image_url": "https://sdo.gsfc.nasa.gov/assets/img/browse/2018/09/12/20180912_090015_4096_0094.jpg",
+      "source": "NASA SDO",
+      "description": "Solar wind visualization"
+    },
+    {
+      "slide_id": 11,
+      "title": "The Sun's Magnetic Field",
+      "image_url": "https://sdo.gsfc.nasa.gov/assets/img/browse/2017/04/18/20170418_120015_1024_HMIB.jpg",
+      "source": "NASA SDO",
+      "description": "Solar magnetic field lines"
+    },
+    {
+      "slide_id": 12,
+      "title": "The Sun's 11-Year Cycle",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/solar-cycle-25-prediction-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "Solar cycle prediction chart"
+    },
+    {
+      "slide_id": 13,
+      "title": "The Sun's Amazing Statistics",
+      "image_url": "https://solarsystem.nasa.gov/system/stellar_items/image_files/280_sun_layers_interior.jpg",
+      "source": "NASA Solar System",
+      "description": "Solar interior structure"
+    },
+    {
+      "slide_id": 14,
+      "title": "The Sun's Lifetime",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/stellar-evolution-main-sequence-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "Stellar evolution timeline"
+    },
+    {
+      "slide_id": 15,
+      "title": "What is a Solar Flare?",
+      "image_url": "https://sdo.gsfc.nasa.gov/assets/img/browse/2011/02/15/20110215_001015_4096_0131.jpg",
+      "source": "NASA SDO",
+      "description": "Solar flare eruption"
+    },
+    {
+      "slide_id": 16,
+      "title": "Solar Flare Energy",
+      "image_url": "https://sdo.gsfc.nasa.gov/assets/img/browse/2017/09/06/20170906_120015_4096_0094.jpg",
+      "source": "NASA SDO",
+      "description": "High-energy solar flare"
+    },
+    {
+      "slide_id": 17,
+      "title": "Different Types of Solar Flares",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/solar-flare-classification-chart-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "Solar flare classification system"
+    },
+    {
+      "slide_id": 18,
+      "title": "How Long Do Solar Flares Last?",
+      "image_url": "https://sdo.gsfc.nasa.gov/assets/img/browse/2015/03/11/20150311_161015_4096_0171.jpg",
+      "source": "NASA SDO",
+      "description": "Long-duration solar flare"
+    },
+    {
+      "slide_id": 19,
+      "title": "How Scientists Detect Solar Flares",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/sdo-spacecraft-artist-concept-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "SDO spacecraft monitoring the Sun"
+    },
+    {
+      "slide_id": 20,
+      "title": "Solar Flares and Radio Waves",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/radio-blackout-world-map-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "Radio blackout effects map"
+    },
+    {
+      "slide_id": 21,
+      "title": "The Biggest Solar Flare Ever Recorded",
+      "image_url": "https://sdo.gsfc.nasa.gov/assets/img/browse/2003/10/28/20031028_110015_4096_0195.jpg",
+      "source": "NASA SDO",
+      "description": "Historic X-class solar flare"
+    },
+    {
+      "slide_id": 22,
+      "title": "Protecting Against Solar Flares",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/satellite-hardening-technology-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "Satellite protection technology"
+    },
+    {
+      "slide_id": 23,
+      "title": "What is a Coronal Mass Ejection (CME)?",
+      "image_url": "https://soho.nascom.nasa.gov/data/realtime/c2/512/latest.jpg",
+      "source": "NASA SOHO",
+      "description": "Latest CME from SOHO coronagraph"
+    },
+    {
+      "slide_id": 24,
+      "title": "CME Speed and Size",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/cme-speed-measurement-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "CME speed measurement visualization"
+    },
+    {
+      "slide_id": 25,
+      "title": "CMEs and Solar Flares - Related Events",
+      "image_url": "https://soho.nascom.nasa.gov/data/realtime/c3/512/latest.jpg",
+      "source": "NASA SOHO",
+      "description": "Wide-angle CME view from SOHO"
+    },
+    {
+      "slide_id": 26,
+      "title": "How Long Does a CME Take to Reach Earth?",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/cme-earth-trajectory-model-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "CME trajectory to Earth"
+    },
+    {
+      "slide_id": 27,
+      "title": "CME Direction - Not All Hit Earth",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/cme-direction-angles-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "CME direction analysis"
+    },
+    {
+      "slide_id": 28,
+      "title": "CME Classification",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/cme-speed-classification-chart-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "CME classification system"
+    },
+    {
+      "slide_id": 29,
+      "title": "How We Study CMEs",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/stereo-soho-satellites-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "STEREO and SOHO satellites"
+    },
+    {
+      "slide_id": 30,
+      "title": "CMEs and Earth's Magnetic Field",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/cme-magnetosphere-interaction-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "CME-magnetosphere interaction"
+    },
+    {
+      "slide_id": 31,
+      "title": "Earth's Magnetic Shield",
+      "image_url": "https://svs.gsfc.nasa.gov/vis/a010000/a013000/a013038/magnetosphere_print.jpg",
+      "source": "NASA SVS",
+      "description": "Earth's magnetosphere visualization"
+    },
+    {
+      "slide_id": 32,
+      "title": "The Magnetosphere - Our Space Shield",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/earths_magnetosphere.jpg",
+      "source": "NASA",
+      "description": "Earth's protective magnetic field"
+    },
+    {
+      "slide_id": 33,
+      "title": "What Happens When Space Weather Hits Earth?",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/space_weather_earth_impact.jpg",
+      "source": "NASA",
+      "description": "Space weather effects on Earth"
+    },
+    {
+      "slide_id": 34,
+      "title": "Aurora - Nature's Light Show",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/aurora_borealis_iss.jpg",
+      "source": "NASA ISS",
+      "description": "Aurora from International Space Station"
+    },
+    {
+      "slide_id": 35,
+      "title": "Space Weather and Technology",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/technology_space_weather.jpg",
+      "source": "NASA",
+      "description": "Technology affected by space weather"
+    },
+    {
+      "slide_id": 36,
+      "title": "Protecting Satellites",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/satellite_space_weather.jpg",
+      "source": "NASA",
+      "description": "Satellite protection from space weather"
+    },
+    {
+      "slide_id": 37,
+      "title": "Space Weather and Power Grids",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/quebec_blackout_1989.jpg",
+      "source": "NASA",
+      "description": "1989 Quebec power blackout"
+    },
+    {
+      "slide_id": 38,
+      "title": "Predicting Space Weather",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/space_weather_prediction.jpg",
+      "source": "NASA",
+      "description": "Space weather prediction models"
+    },
+    {
+      "slide_id": 39,
+      "title": "The Carrington Event - 1859",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/carrington_event_1859.jpg",
+      "source": "NASA",
+      "description": "Historic Carrington solar storm"
+    },
+    {
+      "slide_id": 40,
+      "title": "Space Weather Around the World",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/global_space_weather_map.jpg",
+      "source": "NASA",
+      "description": "Global space weather effects map"
+    },
+    {
+      "slide_id": 41,
+      "title": "Space Weather and Astronauts",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/iss_astronaut_protection.jpg",
+      "source": "NASA",
+      "description": "Astronaut protection from space weather"
+    },
+    {
+      "slide_id": 42,
+      "title": "How Scientists Study Space Weather",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/space_weather_observatory.jpg",
+      "source": "NASA",
+      "description": "Ground-based space weather observatory"
+    },
+    {
+      "slide_id": 43,
+      "title": "Space Weather and Climate",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/climate_space_weather.jpg",
+      "source": "NASA",
+      "description": "Space weather climate connections"
+    },
+    {
+      "slide_id": 44,
+      "title": "Future of Space Weather Research",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/future_space_missions.jpg",
+      "source": "NASA",
+      "description": "Future space weather missions"
+    },
+    {
+      "slide_id": 45,
+      "title": "Space Weather Monitoring Network",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/global_monitoring_network.jpg",
+      "source": "NASA",
+      "description": "Global space weather monitoring network"
+    },
+    {
+      "slide_id": 46,
+      "title": "Space Weather Prediction Centers",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/noaa_prediction_center.jpg",
+      "source": "NASA",
+      "description": "NOAA Space Weather Prediction Center"
+    },
+    {
+      "slide_id": 47,
+      "title": "Solar Prominences - Fire Bridges in Space",
+      "image_url": "https://sdo.gsfc.nasa.gov/assets/img/browse/2015/08/31/20150831_003015_4096_0304.jpg",
+      "source": "NASA SDO",
+      "description": "Solar prominence eruption"
+    },
+    {
+      "slide_id": 48,
+      "title": "Coronal Holes - The Sun's Open Windows",
+      "image_url": "https://sdo.gsfc.nasa.gov/assets/img/browse/2020/03/28/20200328_000015_4096_0193.jpg",
+      "source": "NASA SDO",
+      "description": "Coronal hole on solar surface"
+    },
+    {
+      "slide_id": 49,
+      "title": "Solar Minimum vs. Solar Maximum",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/solar-cycle-comparison-chart-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "Solar minimum vs maximum comparison"
+    },
+    {
+      "slide_id": 50,
+      "title": "Measuring Solar Activity",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/solar-activity-measurement-graph-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "Solar activity measurement tools"
+    },
+    {
+      "slide_id": 51,
+      "title": "The Sun in Different Wavelengths",
+      "image_url": "https://sdo.gsfc.nasa.gov/assets/img/browse/2019/07/02/20190702_120015_4096_HMII.jpg",
+      "source": "NASA SDO",
+      "description": "Multi-wavelength solar observation"
+    },
+    {
+      "slide_id": 52,
+      "title": "The Sun's Differential Rotation",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/solar-differential-rotation-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "Solar differential rotation visualization"
+    },
+    {
+      "slide_id": 53,
+      "title": "The Heliosphere - The Sun's Bubble",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/heliosphere-voyager-diagram-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "Heliosphere boundary diagram"
+    },
+    {
+      "slide_id": 54,
+      "title": "Solar Irradiance - The Sun's Energy Output",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/solar-irradiance-total-chart-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "Solar irradiance measurement chart"
+    },
+    {
+      "slide_id": 55,
+      "title": "Space Weather and Your Cell Phone",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/gps-space-weather-disruption-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "GPS disruption by space weather"
+    },
+    {
+      "slide_id": 56,
+      "title": "Space Weather and Airplanes",
+      "image_url": "https://science.nasa.gov/wp-content/uploads/2023/09/airline-radiation-polar-routes-16x9-1.jpg",
+      "source": "NASA Science",
+      "description": "Airline radiation exposure routes"
+    },
+    {
+      "slide_id": 57,
+      "title": "Space Weather and Ship Navigation",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/ship_navigation_compass.jpg",
+      "source": "NASA",
+      "description": "Ship navigation affected by space weather"
+    },
+    {
+      "slide_id": 58,
+      "title": "Space Weather and Compasses",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/magnetic_declination_map.jpg",
+      "source": "NASA",
+      "description": "Magnetic declination map"
+    },
+    {
+      "slide_id": 59,
+      "title": "The Economic Impact of Space Weather",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/economic_impact_chart.jpg",
+      "source": "NASA",
+      "description": "Economic impact of space weather events"
+    },
+    {
+      "slide_id": 60,
+      "title": "Jobs in Space Weather",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/space_weather_scientists.jpg",
+      "source": "NASA",
+      "description": "Space weather research careers"
+    },
+    {
+      "slide_id": 61,
+      "title": "Space Weather and Your Home",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/home_power_outage.jpg",
+      "source": "NASA",
+      "description": "Home power outage from space weather"
+    },
+    {
+      "slide_id": 62,
+      "title": "Space Weather and Astronomy",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/aurora_from_ground.jpg",
+      "source": "NASA",
+      "description": "Aurora observed from ground"
+    },
+    {
+      "slide_id": 63,
+      "title": "Space Weather on Other Planets",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/jupiter_aurora_hubble.jpg",
+      "source": "NASA Hubble",
+      "description": "Jupiter's aurora from Hubble"
+    },
+    {
+      "slide_id": 64,
+      "title": "Space Weather on Mars",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/mars_atmosphere_loss.jpg",
+      "source": "NASA",
+      "description": "Mars atmosphere loss due to space weather"
+    },
+    {
+      "slide_id": 65,
+      "title": "Space Weather on Mercury",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/mercury_magnetosphere.jpg",
+      "source": "NASA",
+      "description": "Mercury's magnetosphere"
+    },
+    {
+      "slide_id": 66,
+      "title": "Jupiter's Magnetic Field",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/jupiter_magnetosphere_juno.jpg",
+      "source": "NASA Juno",
+      "description": "Jupiter's magnetosphere from Juno"
+    },
+    {
+      "slide_id": 67,
+      "title": "Saturn's Auroras",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/saturn_aurora_cassini.jpg",
+      "source": "NASA Cassini",
+      "description": "Saturn's aurora from Cassini"
+    },
+    {
+      "slide_id": 68,
+      "title": "Studying Space Weather from Space",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/dscovr_satellite.jpg",
+      "source": "NASA",
+      "description": "DSCOVR satellite monitoring space weather"
+    },
+    {
+      "slide_id": 69,
+      "title": "The Sun and Water on Mars",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/mars_water_loss_timeline.jpg",
+      "source": "NASA",
+      "description": "Mars water loss timeline"
+    },
+    {
+      "slide_id": 70,
+      "title": "Space Weather and Space Exploration",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/artemis_moon_mission.jpg",
+      "source": "NASA",
+      "description": "Artemis Moon mission"
+    },
+    {
+      "slide_id": 71,
+      "title": "What We've Learned",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/space_weather_summary.jpg",
+      "source": "NASA",
+      "description": "Space weather knowledge summary"
+    },
+    {
+      "slide_id": 72,
+      "title": "Your Role in Space Weather Awareness",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/citizen_science_space_weather.jpg",
+      "source": "NASA",
+      "description": "Citizen science in space weather"
+    },
+    {
+      "slide_id": 73,
+      "title": "Resources for Learning More",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/nasa_education_resources.jpg",
+      "source": "NASA",
+      "description": "NASA education resources"
+    },
+    {
+      "slide_id": 74,
+      "title": "Test Your Knowledge!",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/quiz_space_weather.jpg",
+      "source": "NASA",
+      "description": "Space weather quiz illustration"
+    },
+    {
+      "slide_id": 75,
+      "title": "Congratulations, Space Weather Explorer!",
+      "image_url": "https://www.nasa.gov/sites/default/files/thumbnails/image/space_explorer_badge.jpg",
+      "source": "NASA",
+      "description": "Space explorer achievement badge"
+    }
+  ],
+  "image_sources": {
+    "nasa_sdo": "NASA Solar Dynamics Observatory - Real-time solar images",
+    "nasa_science": "NASA Science - Scientific visualizations and charts",
+    "nasa_soho": "NASA SOHO - Solar and Heliospheric Observatory",
+    "nasa_svs": "NASA Scientific Visualization Studio",
+    "nasa_solar_system": "NASA Solar System Exploration",
+    "nasa_iss": "NASA International Space Station",
+    "nasa_hubble": "NASA Hubble Space Telescope",
+    "nasa_juno": "NASA Juno Mission",
+    "nasa_cassini": "NASA Cassini Mission",
+    "nasa": "NASA General Archives"
+  },
+  "total_images": 75,
+  "last_updated": "2024-12-19",
+  "description": "Comprehensive collection of 75 unique space weather and solar images from NASA and other space agencies for the Adventure.tsx educational slideshow"
+}

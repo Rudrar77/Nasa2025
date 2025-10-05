@@ -1,0 +1,529 @@
+{
+  "adventure_images": [
+    {
+      "slide_id": 1,
+      "title": "Maya's Space Weather Adventure",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Space weather concept with Earth and solar activity",
+      "scientific_terms": ["space weather", "earth", "solar activity"]
+    },
+    {
+      "slide_id": 2,
+      "title": "A Normal Tuesday Morning",
+      "image_url": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop",
+      "description": "Morning routine in apartment with coffee and phone",
+      "scientific_terms": ["morning routine", "technology"]
+    },
+    {
+      "slide_id": 3,
+      "title": "Technology-Dependent Life",
+      "image_url": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+      "description": "Multiple technology devices and screens",
+      "scientific_terms": ["technology", "devices", "screens"]
+    },
+    {
+      "slide_id": 4,
+      "title": "The Delivery Van",
+      "image_url": "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=800&h=600&fit=crop",
+      "description": "Delivery truck with GPS navigation system",
+      "scientific_terms": ["GPS", "navigation", "satellites"]
+    },
+    {
+      "slide_id": 5,
+      "title": "First Stop Success",
+      "image_url": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop",
+      "description": "Suburban neighborhood delivery scene",
+      "scientific_terms": ["delivery", "suburban", "neighborhood"]
+    },
+    {
+      "slide_id": 6,
+      "title": "Something Feels Different",
+      "image_url": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop",
+      "description": "Downtown Minneapolis with technology glitches",
+      "scientific_terms": ["technology glitches", "interference", "static"]
+    },
+    {
+      "slide_id": 7,
+      "title": "The GPS Glitch",
+      "image_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      "description": "GPS device showing error or wrong location",
+      "scientific_terms": ["GPS", "satellite", "navigation error"]
+    },
+    {
+      "slide_id": 8,
+      "title": "Not Just Maya",
+      "image_url": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop",
+      "description": "Multiple confused drivers at busy intersection",
+      "scientific_terms": ["drivers", "confusion", "intersection"]
+    },
+    {
+      "slide_id": 9,
+      "title": "Phone Troubles",
+      "image_url": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+      "description": "Phone with no signal or connection issues",
+      "scientific_terms": ["phone", "signal", "connection", "interference"]
+    },
+    {
+      "slide_id": 10,
+      "title": "The Radio Emergency Alert",
+      "image_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      "description": "Radio in vehicle with emergency broadcast",
+      "scientific_terms": ["radio", "emergency", "broadcast", "static"]
+    },
+    {
+      "slide_id": 11,
+      "title": "Learning About Space Weather",
+      "image_url": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+      "description": "Coffee shop with laptop researching space weather",
+      "scientific_terms": ["space weather", "research", "learning"]
+    },
+    {
+      "slide_id": 12,
+      "title": "The Sun's Hidden Power",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Solar wind visualization and Earth's magnetic field",
+      "scientific_terms": ["sun", "solar wind", "magnetic field", "magnetosphere"]
+    },
+    {
+      "slide_id": 13,
+      "title": "Solar Flares Explained",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Solar flare eruption from SOHO satellite",
+      "scientific_terms": ["solar flare", "sun", "SOHO", "eruption", "radiation"]
+    },
+    {
+      "slide_id": 14,
+      "title": "Why GPS Fails",
+      "image_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      "description": "GPS satellite constellation in space",
+      "scientific_terms": ["GPS", "satellites", "constellation", "space"]
+    },
+    {
+      "slide_id": 15,
+      "title": "A New Perspective",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Earth from space showing magnetic field lines",
+      "scientific_terms": ["earth", "space", "magnetic field", "magnetosphere"]
+    },
+    {
+      "slide_id": 16,
+      "title": "Back on the Road",
+      "image_url": "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=800&h=600&fit=crop",
+      "description": "Delivery van with paper map instead of GPS",
+      "scientific_terms": ["delivery", "van", "map", "navigation"]
+    },
+    {
+      "slide_id": 17,
+      "title": "The Farmer's Story",
+      "image_url": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop",
+      "description": "GPS-guided tractor in farm field",
+      "scientific_terms": ["GPS", "tractor", "farm", "agriculture"]
+    },
+    {
+      "slide_id": 18,
+      "title": "The Pilot's Dilemma",
+      "image_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      "description": "Airport with delayed flights due to GPS issues",
+      "scientific_terms": ["airport", "flights", "GPS", "navigation"]
+    },
+    {
+      "slide_id": 19,
+      "title": "Hospital Concerns",
+      "image_url": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+      "description": "Hospital with medical technology systems",
+      "scientific_terms": ["hospital", "medical", "technology", "systems"]
+    },
+    {
+      "slide_id": 20,
+      "title": "The Teacher's Lesson",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Classroom teaching about space weather",
+      "scientific_terms": ["classroom", "teaching", "space weather", "education"]
+    },
+    {
+      "slide_id": 21,
+      "title": "The Power Grid Worker",
+      "image_url": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+      "description": "Power grid infrastructure and transformers",
+      "scientific_terms": ["power grid", "infrastructure", "transformers", "electricity"]
+    },
+    {
+      "slide_id": 22,
+      "title": "The Airline Operations Center",
+      "image_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      "description": "Air traffic control center with radar screens",
+      "scientific_terms": ["air traffic", "control", "radar", "operations"]
+    },
+    {
+      "slide_id": 23,
+      "title": "The Solar Storm Intensifies",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Intense solar storm activity from space",
+      "scientific_terms": ["solar storm", "sun", "space weather", "intense activity"]
+    },
+    {
+      "slide_id": 24,
+      "title": "The Astronomer's Perspective",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Astronomer at telescope observing the Sun",
+      "scientific_terms": ["astronomer", "telescope", "sun", "observation"]
+    },
+    {
+      "slide_id": 25,
+      "title": "Understanding Solar Cycles",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Solar cycle visualization and sunspot activity",
+      "scientific_terms": ["solar cycle", "sunspots", "sun", "activity cycles"]
+    },
+    {
+      "slide_id": 26,
+      "title": "The Magnetosphere Explained",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Earth's magnetosphere protecting from solar wind",
+      "scientific_terms": ["magnetosphere", "earth", "magnetic field", "solar wind"]
+    },
+    {
+      "slide_id": 27,
+      "title": "The Van Allen Belts",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Van Allen radiation belts around Earth",
+      "scientific_terms": ["Van Allen belts", "radiation belts", "earth", "space"]
+    },
+    {
+      "slide_id": 28,
+      "title": "The International Space Station",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "ISS in orbit around Earth",
+      "scientific_terms": ["ISS", "International Space Station", "orbit", "earth"]
+    },
+    {
+      "slide_id": 29,
+      "title": "Historical Space Weather Events",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Historical solar events and their impacts",
+      "scientific_terms": ["historical", "space weather", "solar events", "impacts"]
+    },
+    {
+      "slide_id": 30,
+      "title": "The Carrington Event",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "1859 Carrington Event solar storm",
+      "scientific_terms": ["Carrington Event", "solar storm", "1859", "historical"]
+    },
+    {
+      "slide_id": 31,
+      "title": "Modern Space Weather Monitoring",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Space weather monitoring station and equipment",
+      "scientific_terms": ["monitoring", "space weather", "station", "equipment"]
+    },
+    {
+      "slide_id": 32,
+      "title": "The NOAA Space Weather Center",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "NOAA Space Weather Prediction Center",
+      "scientific_terms": ["NOAA", "space weather", "prediction", "center"]
+    },
+    {
+      "slide_id": 33,
+      "title": "Back to Delivery Work",
+      "image_url": "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=800&h=600&fit=crop",
+      "description": "Maya back in delivery van with new understanding",
+      "scientific_terms": ["delivery", "van", "understanding", "work"]
+    },
+    {
+      "slide_id": 34,
+      "title": "The Emergency Services Impact",
+      "image_url": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+      "description": "Emergency services and first responders",
+      "scientific_terms": ["emergency", "services", "first responders", "impact"]
+    },
+    {
+      "slide_id": 35,
+      "title": "The Bank's Backup Systems",
+      "image_url": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+      "description": "Banking technology and financial systems",
+      "scientific_terms": ["banking", "technology", "financial", "systems"]
+    },
+    {
+      "slide_id": 36,
+      "title": "The Farmer's Precision Agriculture",
+      "image_url": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop",
+      "description": "Precision agriculture with GPS guidance",
+      "scientific_terms": ["precision agriculture", "GPS", "farming", "guidance"]
+    },
+    {
+      "slide_id": 37,
+      "title": "The Trucker's Dilemma",
+      "image_url": "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=800&h=600&fit=crop",
+      "description": "Long-haul trucker with navigation issues",
+      "scientific_terms": ["trucker", "navigation", "long-haul", "transportation"]
+    },
+    {
+      "slide_id": 38,
+      "title": "The Survey Crew's Problem",
+      "image_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      "description": "Surveying equipment and GPS precision",
+      "scientific_terms": ["surveying", "equipment", "GPS", "precision"]
+    },
+    {
+      "slide_id": 39,
+      "title": "The Mining Operation",
+      "image_url": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop",
+      "description": "Mining operation with GPS-guided equipment",
+      "scientific_terms": ["mining", "operation", "GPS", "equipment"]
+    },
+    {
+      "slide_id": 40,
+      "title": "The Weather Station Paradox",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Weather monitoring station affected by space weather",
+      "scientific_terms": ["weather station", "monitoring", "space weather", "paradox"]
+    },
+    {
+      "slide_id": 41,
+      "title": "The Radio Amateur's Perspective",
+      "image_url": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+      "description": "Ham radio operator with communication equipment",
+      "scientific_terms": ["ham radio", "operator", "communication", "equipment"]
+    },
+    {
+      "slide_id": 42,
+      "title": "The Coast Guard's Challenge",
+      "image_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      "description": "Coast Guard operations and navigation",
+      "scientific_terms": ["coast guard", "operations", "navigation", "maritime"]
+    },
+    {
+      "slide_id": 43,
+      "title": "The Geologist's Field Work",
+      "image_url": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop",
+      "description": "Geological survey work with GPS equipment",
+      "scientific_terms": ["geologist", "field work", "GPS", "geological survey"]
+    },
+    {
+      "slide_id": 44,
+      "title": "The Timing Systems",
+      "image_url": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+      "description": "Precision timing systems and atomic clocks",
+      "scientific_terms": ["timing systems", "atomic clocks", "precision", "time"]
+    },
+    {
+      "slide_id": 45,
+      "title": "The Internet's Vulnerability",
+      "image_url": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+      "description": "Internet infrastructure and data centers",
+      "scientific_terms": ["internet", "infrastructure", "data centers", "vulnerability"]
+    },
+    {
+      "slide_id": 46,
+      "title": "The Electric Grid's Sensitivity",
+      "image_url": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+      "description": "Power grid transformers and electrical infrastructure",
+      "scientific_terms": ["electric grid", "transformers", "electrical", "infrastructure"]
+    },
+    {
+      "slide_id": 47,
+      "title": "The Pipeline Monitoring",
+      "image_url": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop",
+      "description": "Pipeline infrastructure and monitoring systems",
+      "scientific_terms": ["pipeline", "monitoring", "infrastructure", "systems"]
+    },
+    {
+      "slide_id": 48,
+      "title": "The Scientific Research Impact",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Research laboratory and scientific equipment",
+      "scientific_terms": ["scientific research", "laboratory", "equipment", "impact"]
+    },
+    {
+      "slide_id": 49,
+      "title": "The Military's Concerns",
+      "image_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      "description": "Military communications and defense systems",
+      "scientific_terms": ["military", "communications", "defense", "systems"]
+    },
+    {
+      "slide_id": 50,
+      "title": "The International Cooperation",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "International space agencies working together",
+      "scientific_terms": ["international", "cooperation", "space agencies", "collaboration"]
+    },
+    {
+      "slide_id": 51,
+      "title": "The Economic Impact",
+      "image_url": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+      "description": "Economic data visualization and financial markets",
+      "scientific_terms": ["economic", "impact", "financial", "markets"]
+    },
+    {
+      "slide_id": 52,
+      "title": "The Future Technology",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Future space technology and innovations",
+      "scientific_terms": ["future", "technology", "space", "innovations"]
+    },
+    {
+      "slide_id": 53,
+      "title": "The Solar Observatory",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Solar observatory and telescope facilities",
+      "scientific_terms": ["solar observatory", "telescope", "facilities", "observation"]
+    },
+    {
+      "slide_id": 54,
+      "title": "The Particle Physics",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Particle accelerator and physics research",
+      "scientific_terms": ["particle physics", "accelerator", "research", "physics"]
+    },
+    {
+      "slide_id": 55,
+      "title": "The Aurora Science",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Aurora borealis and aurora australis phenomena",
+      "scientific_terms": ["aurora", "aurora borealis", "aurora australis", "northern lights"]
+    },
+    {
+      "slide_id": 56,
+      "title": "The Seasonal Variations",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Seasonal space weather variations and cycles",
+      "scientific_terms": ["seasonal", "variations", "space weather", "cycles"]
+    },
+    {
+      "slide_id": 57,
+      "title": "The Historical Records",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Historical solar records and sunspot observations",
+      "scientific_terms": ["historical", "records", "solar", "sunspots"]
+    },
+    {
+      "slide_id": 58,
+      "title": "The Animal Behavior",
+      "image_url": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop",
+      "description": "Animals affected by space weather and magnetic fields",
+      "scientific_terms": ["animals", "behavior", "space weather", "magnetic fields"]
+    },
+    {
+      "slide_id": 59,
+      "title": "The Human Health Studies",
+      "image_url": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+      "description": "Health research and medical studies",
+      "scientific_terms": ["human health", "studies", "research", "medical"]
+    },
+    {
+      "slide_id": 60,
+      "title": "The Educational Programs",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Space weather education and public outreach",
+      "scientific_terms": ["educational", "programs", "space weather", "outreach"]
+    },
+    {
+      "slide_id": 61,
+      "title": "The Public Awareness",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Public education and awareness campaigns",
+      "scientific_terms": ["public", "awareness", "education", "campaigns"]
+    },
+    {
+      "slide_id": 62,
+      "title": "The International Space Station View",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "ISS view of Earth from space",
+      "scientific_terms": ["ISS", "International Space Station", "earth", "space view"]
+    },
+    {
+      "slide_id": 63,
+      "title": "The Spacecraft Protection",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Spacecraft shielding and protection systems",
+      "scientific_terms": ["spacecraft", "protection", "shielding", "systems"]
+    },
+    {
+      "slide_id": 64,
+      "title": "The Future Missions",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Future space missions and exploration",
+      "scientific_terms": ["future", "missions", "space", "exploration"]
+    },
+    {
+      "slide_id": 65,
+      "title": "The Technology Adaptation",
+      "image_url": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+      "description": "Adaptive technology and resilient systems",
+      "scientific_terms": ["technology", "adaptation", "resilient", "systems"]
+    },
+    {
+      "slide_id": 66,
+      "title": "The Personal Impact Reflection",
+      "image_url": "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=800&h=600&fit=crop",
+      "description": "Maya reflecting on her space weather experience",
+      "scientific_terms": ["personal", "impact", "reflection", "experience"]
+    },
+    {
+      "slide_id": 67,
+      "title": "The Community Connections",
+      "image_url": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop",
+      "description": "Community gathering and shared experiences",
+      "scientific_terms": ["community", "connections", "gathering", "shared experiences"]
+    },
+    {
+      "slide_id": 68,
+      "title": "The Technological Dependence",
+      "image_url": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+      "description": "Technology dependence and vulnerability",
+      "scientific_terms": ["technological", "dependence", "vulnerability", "technology"]
+    },
+    {
+      "slide_id": 69,
+      "title": "The Scientific Wonder",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Scientific discovery and wonder of space",
+      "scientific_terms": ["scientific", "wonder", "discovery", "space"]
+    },
+    {
+      "slide_id": 70,
+      "title": "The Global Perspective",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Global view of Earth and space weather impacts",
+      "scientific_terms": ["global", "perspective", "earth", "space weather impacts"]
+    },
+    {
+      "slide_id": 71,
+      "title": "The Evening Commute",
+      "image_url": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop",
+      "description": "Evening traffic and city lights",
+      "scientific_terms": ["evening", "commute", "traffic", "city lights"]
+    },
+    {
+      "slide_id": 72,
+      "title": "The Photography Opportunity",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Aurora photography and night sky",
+      "scientific_terms": ["photography", "aurora", "night sky", "opportunity"]
+    },
+    {
+      "slide_id": 73,
+      "title": "The Perfect Shot",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Beautiful aurora borealis display",
+      "scientific_terms": ["perfect shot", "aurora borealis", "beautiful", "display"]
+    },
+    {
+      "slide_id": 74,
+      "title": "Maya's New Understanding",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Earth from space with new perspective",
+      "scientific_terms": ["understanding", "earth", "space", "perspective"]
+    },
+    {
+      "slide_id": 75,
+      "title": "The Aurora Gift",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Stunning aurora display as nature's gift",
+      "scientific_terms": ["aurora", "gift", "nature", "display"]
+    }
+  ]
+}

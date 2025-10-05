@@ -37,33 +37,48 @@ const AiChatPage: React.FC = () => {
     setInputValue('');
     setIsThinking(true);
 
-    // --- Backend API Call Simulation ---
-    // In a real application, you would make an API call to your backend here.
-    // Your backend would then securely call the Gemini API with your key.
-    // For demonstration, we'll simulate a response.
-    console.log("Sending to AI (mock):", text);
-    
-    // The system prompt tells the AI to act as a space expert.
+    // --- Gemini API Call ---
+    // IMPORTANT: Storing API keys on the client-side is insecure and should not be done in production.
+    // This is for demonstration purposes only. In a real app, this call should be made from a backend server.
+    const API_KEY = "AIzaSyD_k54qYHS1tdyLheTL0kP2IsKCcY5aS3M";
+    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`;
+
     const systemPrompt = "You are a friendly and enthusiastic space guide for all ages. Your knowledge covers astronomy, space exploration, and cosmology. Keep your answers concise, exciting, and easy to understand. Start your response with a space-themed emoji.";
 
-    // This is a mock response. Replace this with your actual API call.
-    const getMockResponse = (question: string): string => {
-        question = question.toLowerCase();
-        if (question.includes("sun")) return "☀️ The Sun is a giant star at the center of our solar system! It's so big that one million Earths could fit inside it.";
-        if (question.includes("black hole")) return "🕳️ A black hole is a place in space where gravity pulls so much that even light can't get out. It's like a cosmic vacuum cleaner!";
-        if (question.includes("mars")) return "🔴 Mars is the 'Red Planet'! It's red because of rusty iron in the ground. Scientists are very interested in exploring it for signs of past life.";
-        if (question.includes("aurora")) return "🌌 Auroras, or the Northern and Southern Lights, are beautiful light shows in the sky caused by particles from the sun interacting with Earth's magnetic field.";
-        return "🚀 That's a great question! The universe is vast and full of wonders. Tell me what else you're curious about!";
-    }
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [
+                { text: systemPrompt },
+                { text: `Question: ${text}` }
+              ]
+            }
+          ]
+        })
+      });
 
-    setTimeout(() => {
-      const aiResponseText = getMockResponse(text);
+      if (!response.ok) {
+        throw new Error(`API request failed with status ${response.status}`);
+      }
+
+      const data = await response.json();
+      const aiResponseText = data.candidates[0].content.parts[0].text;
       const aiMessage: Message = { sender: 'ai', text: aiResponseText };
       setMessages(prev => [...prev, aiMessage]);
-      setIsThinking(false);
       speak(aiMessage.text, { rate: 0.9, pitch: 1.05 });
-    }, 1500 + Math.random() * 1000);
-    // --- End of Simulation ---
+    } catch (error) {
+      console.error("Error calling Gemini API:", error);
+      const errorMessage: Message = { sender: 'ai', text: "I'm having trouble connecting to my knowledge base right now. Please try again later." };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsThinking(false);
+    }
 
   }, [isThinking, speak]);
 

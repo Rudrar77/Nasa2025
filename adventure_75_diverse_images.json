@@ -1,0 +1,144 @@
+{
+  "adventure_images": [
+    {
+      "slide_id": 1,
+      "title": "Maya's Space Weather Adventure",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Earth from space showing aurora and magnetic field",
+      "scientific_terms": ["space weather", "earth", "aurora"]
+    },
+    {
+      "slide_id": 2,
+      "title": "A Normal Tuesday Morning",
+      "image_url": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop",
+      "description": "Morning routine with technology devices",
+      "scientific_terms": ["technology", "daily life", "devices"]
+    },
+    {
+      "slide_id": 3,
+      "title": "Technology-Dependent Life",
+      "image_url": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+      "description": "Multiple electronic devices and screens",
+      "scientific_terms": ["technology", "electronics", "connectivity"]
+    },
+    {
+      "slide_id": 4,
+      "title": "The Delivery Van",
+      "image_url": "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=800&h=600&fit=crop",
+      "description": "Delivery vehicle with GPS navigation",
+      "scientific_terms": ["GPS", "navigation", "transportation"]
+    },
+    {
+      "slide_id": 5,
+      "title": "GPS Navigation",
+      "image_url": "https://images.unsplash.com/photo-1614728263952-84ea256f9679?w=800&h=600&fit=crop",
+      "description": "GPS satellite navigation system",
+      "scientific_terms": ["GPS", "satellite", "navigation"]
+    },
+    {
+      "slide_id": 6,
+      "title": "Technology Glitches",
+      "image_url": "https://images.unsplash.com/photo-1573588028698-f4759befb09a?w=800&h=600&fit=crop",
+      "description": "Electronic interference and signal disruption",
+      "scientific_terms": ["interference", "electronic", "disruption"]
+    },
+    {
+      "slide_id": 7,
+      "title": "GPS Signal Loss",
+      "image_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      "description": "Satellite communication disruption",
+      "scientific_terms": ["satellite", "communication", "signal loss"]
+    },
+    {
+      "slide_id": 8,
+      "title": "Widespread Issues",
+      "image_url": "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=800&h=600&fit=crop",
+      "description": "Communication network problems",
+      "scientific_terms": ["network", "communication", "infrastructure"]
+    },
+    {
+      "slide_id": 9,
+      "title": "Radio Emergency Alert",
+      "image_url": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop",
+      "description": "Emergency radio broadcast system",
+      "scientific_terms": ["radio", "emergency", "broadcast"]
+    },
+    {
+      "slide_id": 10,
+      "title": "Space Weather Alert",
+      "image_url": "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=800&h=600&fit=crop",
+      "description": "Solar activity and space weather monitoring",
+      "scientific_terms": ["space weather", "solar activity", "monitoring"]
+    },
+    {
+      "slide_id": 11,
+      "title": "The Sun's Power",
+      "image_url": "https://images.unsplash.com/photo-1502579650727-59ba80d4fe0f?w=800&h=600&fit=crop",
+      "description": "Solar disk and surface activity",
+      "scientific_terms": ["sun", "solar", "solar surface"]
+    },
+    {
+      "slide_id": 12,
+      "title": "Solar Flares",
+      "image_url": "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?w=800&h=600&fit=crop",
+      "description": "Solar flare eruption from sun's surface",
+      "scientific_terms": ["solar flare", "solar eruption", "plasma"]
+    },
+    {
+      "slide_id": 13,
+      "title": "Solar Wind",
+      "image_url": "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=800&h=600&fit=crop",
+      "description": "Solar wind particles streaming from sun",
+      "scientific_terms": ["solar wind", "charged particles", "solar stream"]
+    },
+    {
+      "slide_id": 14,
+      "title": "Coronal Mass Ejection",
+      "image_url": "https://images.unsplash.com/photo-1564053489984-317bbd824340?w=800&h=600&fit=crop",
+      "description": "Massive solar plasma ejection event",
+      "scientific_terms": ["CME", "coronal mass ejection", "plasma cloud"]
+    },
+    {
+      "slide_id": 15,
+      "title": "Earth's Magnetosphere",
+      "image_url": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=600&fit=crop",
+      "description": "Earth's protective magnetic field",
+      "scientific_terms": ["magnetosphere", "magnetic field", "protection"]
+    },
+    {
+      "slide_id": 16,
+      "title": "Magnetic Field Lines",
+      "image_url": "https://images.unsplash.com/photo-1510306135-8fd2c9c1d6c9?w=800&h=600&fit=crop",
+      "description": "Earth's magnetic field visualization",
+      "scientific_terms": ["magnetic field", "field lines", "dipole"]
+    },
+    {
+      "slide_id": 17,
+      "title": "Aurora Formation",
+      "image_url": "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&h=600&fit=crop",
+      "description": "Northern lights aurora borealis",
+      "scientific_terms": ["aurora", "northern lights", "atmospheric glow"]
+    },
+    {
+      "slide_id": 18,
+      "title": "Aurora Curtains",
+      "image_url": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+      "description": "Green aurora curtains in night sky",
+      "scientific_terms": ["aurora", "green aurora", "curtain aurora"]
+    },
+    {
+      "slide_id": 19,
+      "title": "Van Allen Belts",
+      "image_url": "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=800&h=600&fit=crop",
+      "description": "Earth's radiation belts visualization",
+      "scientific_terms": ["Van Allen belts", "radiation belts", "trapped particles"]
+    },
+    {
+      "slide_id": 20,
+      "title": "Satellite Constellation",
+      "image_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      "description": "GPS satellite network in orbit",
+      "scientific_terms": ["satellite", "GPS", "constellation"]
+    }
+  ]
+}

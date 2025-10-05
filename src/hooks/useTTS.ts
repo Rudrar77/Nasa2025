@@ -38,16 +38,15 @@ const useTTS = () => {
 
   // Find the best voice for children
   const findBestChildFriendlyVoice = () => {
-    // Priority list for kid-friendly voices
+    // Priority list for kid-friendly male voices
     const preferredVoices = [
-      // Look for specific voices that are good for kids
-      voices.find(v => v.name.includes('Google') && v.name.toLowerCase().includes('kid')),
-      voices.find(v => v.name.includes('Google US English Female')), // Female voices often clearer for kids
-      voices.find(v => v.name.includes('Microsoft') && v.name.includes('Zira')),
-      voices.find(v => v.name.includes('Female') && v.lang.includes('en-US')),
+      // Look for specific high-quality male voices
+      voices.find(v => v.name === 'Google US English Male'),
+      voices.find(v => v.name === 'Microsoft David - English (United States)'),
+      voices.find(v => v.name.toLowerCase().includes('male') && v.lang.includes('en-US')),
       // Fallback to any Google or English voice
-      voices.find(v => v.name.includes('Google') && v.lang.includes('en')),
-      voices.find(v => v.lang.includes('en-US')),
+      voices.find(v => v.name.includes('Google') && v.lang.includes('en') && v.name.toLowerCase().includes('male')),
+      voices.find(v => v.lang.includes('en-US') && v.name.toLowerCase().includes('male')),
       voices.find(v => v.lang.includes('en'))
     ];
     

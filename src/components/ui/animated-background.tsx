@@ -189,7 +189,7 @@ const AnimatedBackground: React.FC = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 z-0 pointer-events-none"
-      style={{ background: 'linear-gradient(to bottom right, #0f172a, #581c87, #0f172a)' }}
+      style={{ background: 'linear-gradient(to bottom right, #1a0d2e, #6a1b9a, #4a148c, #2e1065)' }}
     />
   );
 };
